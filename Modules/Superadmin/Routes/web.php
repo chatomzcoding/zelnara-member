@@ -17,6 +17,7 @@ Route::middleware(['superadmin'])->group(function (){
     Route::prefix('superadmin')->group(function() {
         Route::get('/', 'SuperadminController@index');
         Route::resource('datapokok', DatapokokController::class);
+        Route::resource('member', MemberController::class);
     });
 });
 

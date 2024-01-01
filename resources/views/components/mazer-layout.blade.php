@@ -76,10 +76,10 @@
                 </a>
             </li>
             <li
-                class="sidebar-item {{ menuaktif($menu,'produk')}}">
-                <a href="{{ url('admin/produk')}}" class='sidebar-link'>
-                    <i class="bi bi-boxes"></i>
-                    <span>Produk</span>
+                class="sidebar-item {{ menuaktif($menu,'member')}}">
+                <a href="{{ url('superadmin/member')}}" class='sidebar-link'>
+                    <i class="bi bi-person"></i>
+                    <span>Member</span>
                 </a>
             </li>
             <li class="sidebar-title">Sistem</li>
