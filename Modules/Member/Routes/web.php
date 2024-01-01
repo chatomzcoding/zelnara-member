@@ -11,6 +11,15 @@
 |
 */
 
-Route::prefix('member')->group(function() {
-    Route::get('/', 'MemberController@index');
+use Illuminate\Support\Facades\Route;
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'member'
+])->group(function () {
+    Route::prefix('member')->group(function() {
+        Route::get('/', 'MemberController@index');
+    });
 });
