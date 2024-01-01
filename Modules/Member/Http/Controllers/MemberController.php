@@ -23,7 +23,8 @@ class MemberController extends Controller
 
     public function layanan()
     {
-        return view('member::layanan');
+        $user = User::find(Auth::user()->id);
+        return view('member::layanan', compact('user'));
     }
 
     /**

@@ -14,6 +14,12 @@ class Linkmaster extends Model
 
     protected $guarded = [];
 
+    function getUrl(){
+        $url = $this->url;
+        $url = "link.zelnara.com/".$url;
+        return $url;
+    }
+
     function member() {
         return $this->belongsTo(Member::class);
     }

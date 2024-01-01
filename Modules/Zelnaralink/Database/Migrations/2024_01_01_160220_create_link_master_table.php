@@ -16,6 +16,7 @@ class CreateLinkMasterTable extends Migration
         Schema::create('link_master', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
+            $table->string('url');
             $table->string('deskripsi');
             $table->string('tema',50);
             $table->text('gambar');
