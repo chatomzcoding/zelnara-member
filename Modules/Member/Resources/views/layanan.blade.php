@@ -45,7 +45,7 @@
                                             <td>{{ $item->judul }}</td>
                                             <td>{{ $item->deskripsi }}</td>
                                             <td>
-                                                <a href="{{ $item->getUrl()}}" target="_blank">{{ $item->getUrl()}}</a>
+                                                <a href="https://link.zelnara.com/{{ $item->url}}" target="_blank">{{ $item->getUrl()}}</a>
                                             </td>
                                             <td>
                                                 <img src="{{ asset('img/layanan/link/'.$item->gambar)}}" alt="" width="100px">
