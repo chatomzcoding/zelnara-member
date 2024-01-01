@@ -16,6 +16,13 @@
                     <span>Member</span>
                 </a>
             </li>
+            <li
+                class="sidebar-item  {{ menuaktif($menuaktif,'layanan')}}">
+                <a href="{{ url('member/layanan')}}" class='sidebar-link'>
+                    <i class="bi bi-ui-checks-grid"></i>
+                    <span>Layanan</span>
+                </a>
+            </li>
         @endif
     {{-- Akhir Menu Khusus Member --}}
 

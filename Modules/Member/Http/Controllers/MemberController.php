@@ -21,6 +21,11 @@ class MemberController extends Controller
         return view('member::index', compact('user'));
     }
 
+    public function layanan()
+    {
+        return view('member::layanan');
+    }
+
     /**
      * Show the form for creating a new resource.
      * @return Renderable

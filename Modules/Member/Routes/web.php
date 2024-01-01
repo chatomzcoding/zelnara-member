@@ -21,6 +21,7 @@ Route::middleware([
 ])->group(function () {
     Route::prefix('member')->group(function() {
         Route::get('/', 'MemberController@index');
+        Route::get('/layanan', 'MemberController@layanan');
         Route::post('/', 'MemberController@store');
     });
 });
