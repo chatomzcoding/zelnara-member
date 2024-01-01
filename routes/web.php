@@ -16,14 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 Route::domain('https://link.zelnara.com')->group(function () {
     Route::get('/', [HomepageController::class,'link']);
+    Route::get('/{url}', [HomepageController::class,'linkurl']);
 });
-Route::get('/{url}', [HomepageController::class,'linkurl']);
 
 Route::domain('https://member.zelnara.com')->group(function () {
     Route::get('/', [HomepageController::class,'index']);
 });
-
-Route::get('/', [HomepageController::class,'index']);
 
 Route::middleware([
     'auth:sanctum',
