@@ -11,6 +11,10 @@
 |
 */
 
-Route::prefix('superadmin')->group(function() {
-    Route::get('/', 'SuperadminController@index');
+use Illuminate\Support\Facades\Route;
+Route::middleware(['superadmin'])->group(function (){
+    Route::prefix('superadmin')->group(function() {
+        Route::get('/', 'SuperadminController@index');
+    });
 });
+
