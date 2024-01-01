@@ -29,6 +29,9 @@ Route::domain('https://member.zelnara.com')->group(function () {
 // PAGE REDIRECT
 Route::get('/page/{page}', [HomepageController::class,'page']);
 
+// PENGUJIAN
+Route::get('/dev/{url}', [HomepageController::class,'linkurl']);
+
 
 Route::middleware([
     'auth:sanctum',
