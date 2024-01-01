@@ -1,4 +1,4 @@
-<x-mazer-layout title="Data Member" menu="member">
+<x-mazer-layout title="Data Member" menu="superadmin-member">
     <div class="page-heading">
         <div class="page-title">
             <div class="row">

@@ -66,54 +66,7 @@
         </div>
     </div>
     <div class="sidebar-menu">
-        <ul class="menu">
-            <li class="sidebar-title">Menu</li>
-            <li
-                class="sidebar-item  {{ menuaktif($menu,'dashboard')}}">
-                <a href="{{ url('dashboard')}}" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li
-                class="sidebar-item {{ menuaktif($menu,'member')}}">
-                <a href="{{ url('superadmin/member')}}" class='sidebar-link'>
-                    <i class="bi bi-person"></i>
-                    <span>Member</span>
-                </a>
-            </li>
-            <li class="sidebar-title">Sistem</li>
-            <li
-                class="sidebar-item {{ menuaktif($menu,'datapokok')}}">
-                <a href="{{ url('superadmin/datapokok')}}" class='sidebar-link'>
-                    <i class="bi bi-file"></i>
-                    <span>Data Pokok</span>
-                </a>
-            </li>
-            <li
-                class="sidebar-item {{ menuaktif($menu,'kategori')}}">
-                <a href="{{ url('superadmin/kategori')}}" class='sidebar-link'>
-                    <i class="bi bi-ui-checks-grid"></i>
-                    <span>Kategori</span>
-                </a>
-            </li>
-            {{-- <li
-                class="sidebar-item {{ menuaktif($menu,'visitor')}}">
-                <a href="{{ url('visitor')}}" class='sidebar-link'>
-                    <i class="bi bi-person"></i>
-                    <span>Visitor</span>
-                </a>
-            </li> --}}
-            <li class="sidebar-item">
-                <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <a href="{{ route('logout') }}"  class="sidebar-link"
-                        onclick="event.preventDefault();
-                                this.closest('form').submit();">
-                <i class="bi bi-box-arrow-right"></i><span>Keluar</span></a>
-                </form>
-            </li>
-        </ul>
+      <x-menu :menuaktif="$menu"></x-menu>
     </div>
 </div>
         </div>
