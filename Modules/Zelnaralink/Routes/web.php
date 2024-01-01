@@ -10,7 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
 
-Route::prefix('zelnaralink')->group(function() {
-    Route::get('/', 'ZelnaralinkController@index');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'member'
+])->group(function () {
+    Route::prefix('zelnaralink')->group(function() {
+        Route::get('/', 'ZelnaralinkController@index');
+
+        Route::resource('linkmaster',LinkmasterController::class);
+    });
 });
