@@ -2,9 +2,12 @@
 
 namespace Modules\Member\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Modules\Superadmin\Entities\Member;
 
 class MemberController extends Controller
 {
@@ -14,7 +17,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('member::index');
+        $user = User::find(Auth::user()->id);
+        return view('member::index', compact('user'));
     }
 
     /**
@@ -33,7 +37,14 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $member = Member::find($request->member_id);
+        $member->nama = $request->nama;
+        $member->alamat = $request->alamat;
+        $member->telp = $request->telp;
+        $member->email = $request->email;
+        $member->save();
+
+        return back()->with('ts','Member berhasil diperbaharui');
     }
 
     /**
@@ -64,7 +75,7 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+ 
     }
 
     /**
