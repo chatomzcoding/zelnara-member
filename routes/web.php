@@ -37,6 +37,3 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', [HomeController::class,'index'])->name('dashboard');
 });
-
-Route::get('/{url}', [HomepageController::class,'linkurl']);
-
