@@ -1,0 +1,13 @@
+{
+    "name": "Zelnaralink",
+    "alias": "zelnaralink",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Zelnaralink\\Providers\\ZelnaralinkServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
