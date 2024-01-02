@@ -40,11 +40,76 @@
                             <a href="{{ $item->url}}" target="_blank" data-s="{{ Crypt::encryptString('jumlah_link_button')}}" data-id="{{ Crypt::encryptString($item->id)}}" class="btn btn-block btn-light icon icon-left">{!! $item->icon !!} {{$item->nama}}</a> <br>
                         @endforeach
                     </div>
+                    @if ($linkmaster->linkmasterkatalog->count() > 0)
+                        <div class="buttons mt-2 p-3">
+                            <p class="text-center border-bottom text-dark text-shadow">Katalog</p>
+                            <div class="row gallery" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                                @foreach ($linkmaster->linkmasterkatalog as $item)
+                                    @php
+                                        $no = $loop->iteration - 1;
+                                    @endphp
+                                    <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2 position-relative">
+                                        <div class="position-relative">
+                                            @if (!is_null($item->tagline))
+                                                <span class="badge bg-primary position-absolute top-0 end-0">{{ $item->tagline }}</span>
+                                            @endif
+                                            <a href="#">
+                                                <img class="w-100 rounded @if ($loop->iteration == 1) active @endif" src="{{ asset('img/layanan/link/'.$item->gambar)}}" data-bs-target="#Gallerycarousel" data-bs-slide-to="{{ $no}}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="modal fade" id="galleryModal" tabindex="-1" role="dialog"
+                            aria-labelledby="galleryModalTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header py-1">
+                                            <h5 class="modal-title" id="galleryModalTitle">Katalog</h5>
+                                            <button type="button" class="close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i data-feather="x"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="Gallerycarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    @foreach ($linkmaster->linkmasterkatalog as $item)
+                                                        <div class="carousel-item position-relative @if ($loop->iteration == 1)
+                                                            active
+                                                            @endif">
+                                                            <p class="text-center mb-1 fw-bold">{{ $item->nama }}</p>
+                                                            <img class="d-block rounded w-100" src="{{ asset('img/layanan/link/'.$item->gambar)}}">
+                                                            <h6 class="text-end mt-1 me-2">Rp. {{ norupiah($item->harga)}}</h6>
+                                                            <p class="small">{{ $item->deskripsi }}</p>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                                <a class="carousel-control-prev" href="#Gallerycarousel" role="button" type="button" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#Gallerycarousel" role="button" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer p-2">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">TUTUP</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <script src="{{ asset('template/mazer/assets/extensions/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('template/mazer/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    
+    <script src="{{ asset('template/mazer/assets/compiled/js/app.js')}}"></script>
 
     <script>
         $('.btn').on('click', function () {

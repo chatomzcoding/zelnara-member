@@ -83,7 +83,7 @@ class LinkmasterkatalogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $katalog = Linkmasterkatalog::find($id);
+        $katalog = Linkmasterkatalog::find($request->id);
         $katalog->nama = $request->nama;
         $katalog->deskripsi = $request->deskripsi;
         $katalog->harga = $request->harga;
