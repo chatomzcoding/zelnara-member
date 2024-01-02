@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Route;
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -21,6 +22,7 @@ Route::middleware([
     Route::prefix('superadmin')->group(function() {
         Route::get('/', 'SuperadminController@index');
         Route::resource('datapokok', DatapokokController::class);
+        Route::resource('kategori', KategoriController::class);
         Route::resource('member', MemberController::class);
     });
 });

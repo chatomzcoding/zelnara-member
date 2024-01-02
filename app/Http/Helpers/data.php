@@ -11,3 +11,12 @@ if (! function_exists('data_level')) {
         return $data;
     }
 }
+
+if (! function_exists('data_label')) {
+    function data_label() {
+        $data = [
+            'link-tema',
+        ];
+        return $data;
+    }
+}

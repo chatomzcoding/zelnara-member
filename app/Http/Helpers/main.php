@@ -39,16 +39,6 @@ if (! function_exists('menuaktif')) {
     }
 }
 
-if (! function_exists('applabel')) {
-    function applabel() {
-        $data = [
-            'galeri',
-            'produk'
-        ];
-        return $data;
-    }
-}
-
 // TIME --------------------------------------------
 if (! function_exists('tgl_sekarang')) {
     function tgl_sekarang() {
