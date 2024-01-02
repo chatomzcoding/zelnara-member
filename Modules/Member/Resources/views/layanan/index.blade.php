@@ -53,6 +53,7 @@
                                             </td>
                                             <td class="text-center">{{ $item->view }}</td>
                                             <td class="text-center">
+                                                <a href="{{ url('member/layananlink/'.Crypt::encryptString($item->id))}}" class="btn btn-primary btn-sm btn-icon"><i class="bi bi-file-text"></i></a>
                                                 <button
                                                     class="btn btn-success btn-sm btn-icon"
                                                     data-bs-target="#editlink"

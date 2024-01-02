@@ -26,7 +26,7 @@ class MemberController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $tema   = Kategori::where('label','link-tema')->get();
-        return view('member::layanan', compact('user','tema'));
+        return view('member::layanan.index', compact('user','tema'));
     }
 
     /**
