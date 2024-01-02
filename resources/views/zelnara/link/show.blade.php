@@ -35,7 +35,7 @@
                 </div>
                 <div>
                     {{--button  --}}
-                    <div class="buttons">
+                    <div class="buttons p-3">
                         @foreach ($linkmaster->linkmasterbutton as $item)
                             <a href="{{ $item->url}}" target="_blank" data-s="{{ Crypt::encryptString('jumlah_link_button')}}" data-id="{{ Crypt::encryptString($item->id)}}" class="btn btn-block btn-light icon icon-left">{!! $item->icon !!} {{$item->nama}}</a> <br>
                         @endforeach
