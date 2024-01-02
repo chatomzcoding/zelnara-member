@@ -40,6 +40,7 @@ class LinkmasterController extends Controller
         $linkmaster->deskripsi = $request->deskripsi;
         $linkmaster->tema = $request->tema;
         $linkmaster->url = $request->url;
+        $linkmaster->view = 0;
 
         $request->validate([
             'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:3000',

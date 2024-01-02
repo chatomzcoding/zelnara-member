@@ -31,10 +31,11 @@
                                 <thead class="text-center">
                                     <tr>
                                         <th width="5%">No</th>
+                                        <th>Gambar</th>
                                         <th>Judul</th>
                                         <th>Deskripsi</th>
                                         <th>Url</th>
-                                        <th>Gambar</th>
+                                        <th>View</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -42,18 +43,19 @@
                                     @forelse ($user->member->linkmaster as $item)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
+                                            <td>
+                                                <img src="{{ asset('img/layanan/link/'.$item->gambar)}}" alt="" width="70px">
+                                            </td>
                                             <td>{{ $item->judul }}</td>
                                             <td>{{ $item->deskripsi }}</td>
                                             <td>
                                                 <a href="https://link.zelnara.com/{{ $item->url}}" target="_blank">{{ $item->getUrl()}}</a>
                                             </td>
-                                            <td>
-                                                <img src="{{ asset('img/layanan/link/'.$item->gambar)}}" alt="" width="100px">
-                                            </td>
+                                            <td class="text-center">{{ $item->view }}</td>
                                             <td class="text-center">
                                                 <button
                                                     class="btn btn-success btn-sm btn-icon"
-                                                    data-bs-target="#edit"
+                                                    data-bs-target="#editlink"
                                                     data-bs-toggle="modal"
                                                     data-judul = "{{ $item->judul }}"
                                                     data-deskripsi = "{{ $item->deskripsi }}"
@@ -127,8 +129,7 @@
           </div>
         </div>
     </div>
-
-    <div class="modal" id="edit" tabindex="-1">
+    <div class="modal" id="editlink" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
             <form action="{{ url('zelnaralink/linkmaster/id')}}" method="post">
@@ -176,7 +177,7 @@
 
     <x-slot name="kodejs">
         <script>
-            $('#edit').on('show.bs.modal', function (event) {
+            $('#editlink').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget)
                 var judul = button.data('judul')
                 var deskripsi = button.data('deskripsi')

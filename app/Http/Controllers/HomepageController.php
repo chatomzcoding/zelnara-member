@@ -34,6 +34,8 @@ class HomepageController extends Controller
         if (!$linkmaster) {
             return redirect('/page/404');
         }
+        $linkmaster->view = $linkmaster->view + 1;
+        $linkmaster->save();
         return view('zelnara.link.show',compact('linkmaster'));
     }
 }
