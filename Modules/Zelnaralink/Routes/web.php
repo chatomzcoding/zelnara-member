@@ -23,5 +23,6 @@ Route::middleware([
 
         Route::resource('linkmaster',LinkmasterController::class);
         Route::resource('linkmasterbutton',LinkmasterbuttonController::class);
+        Route::resource('linkmasterkatalog',LinkmasterkatalogController::class);
     });
 });

@@ -27,4 +27,8 @@ class Linkmaster extends Model
     function linkmasterbutton() {
         return $this->hasMany(Linkmasterbutton::class);
     }
+
+    function linkmasterkatalog() {
+        return $this->hasMany(Linkmasterkatalog::class);
+    }
 }
