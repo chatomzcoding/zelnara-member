@@ -39,7 +39,20 @@
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td class="text-center">{{ $item->label }}</td>
-                                        <td>{{ $item->keterangan }}</td>
+                                        <td>
+                                            @switch($item->label)
+                                                @case('link-icon')
+                                                    Icon {!! $item->keterangan !!}
+                                                    @break
+                                                @case('link-tema')
+                                                    <div class="text-center" style="background: {{ $item->keterangan}}">
+                                                        {{ $item->nama}}
+                                                    </div>
+                                                    @break
+                                                @default
+                                                    {{ $item->keterangan }}
+                                            @endswitch
+                                        </td>
                                         <td class="text-center">
                                             <button
                                                 class="btn btn-success btn-sm btn-icon"
