@@ -22,5 +22,6 @@ Route::middleware([
         Route::get('/', 'ZelnaralinkController@index');
 
         Route::resource('linkmaster',LinkmasterController::class);
+        Route::resource('linkmasterbutton',LinkmasterbuttonController::class);
     });
 });

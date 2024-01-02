@@ -23,4 +23,8 @@ class Linkmaster extends Model
     function member() {
         return $this->belongsTo(Member::class);
     }
+
+    function linkmasterbutton() {
+        return $this->hasMany(Linkmasterbutton::class);
+    }
 }
