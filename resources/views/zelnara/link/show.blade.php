@@ -17,9 +17,8 @@
     }
 
     .grad {
-        background-image: linear-gradient(to right, blue, lightblue);
+        background-image: {{ $linkmaster->tema }};
     }
-
     
   </style>
 </head>

@@ -7,6 +7,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Modules\Superadmin\Entities\Kategori;
 use Modules\Superadmin\Entities\Member;
 
 class MemberController extends Controller
@@ -24,7 +25,8 @@ class MemberController extends Controller
     public function layanan()
     {
         $user = User::find(Auth::user()->id);
-        return view('member::layanan', compact('user'));
+        $tema   = Kategori::where('label','link-tema')->get();
+        return view('member::layanan', compact('user','tema'));
     }
 
     /**

@@ -83,7 +83,26 @@ class LinkmasterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $linkmaster = Linkmaster::find($request->id);
+        $linkmaster->judul = $request->judul;
+        $linkmaster->deskripsi = $request->deskripsi;
+        $linkmaster->tema = $request->tema;
+        $linkmaster->url = $request->url;
+
+        if (isset($request->gambar)) {
+            $request->validate([
+                'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:3000',
+            ]);
+            $file = $request->file('gambar');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $tujuan_upload = "img/layanan/link";
+            $file->move($tujuan_upload,$nama_file);
+            $linkmaster->gambar = $nama_file;
+        }
+
+        $linkmaster->save();
+
+        return back()->with('ts','Link Berhasil diperbaharui');
     }
 
     /**
@@ -93,6 +112,8 @@ class LinkmasterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Linkmaster::find($id)->delete();
+        
+        return back()->with('ts','Link Berhasil dihapus');
     }
 }

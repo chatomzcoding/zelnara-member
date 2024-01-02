@@ -55,7 +55,10 @@
                                                     class="btn btn-success btn-sm btn-icon"
                                                     data-bs-target="#edit"
                                                     data-bs-toggle="modal"
-                                                    data-nama = "{{ $item->nama }}"
+                                                    data-judul = "{{ $item->judul }}"
+                                                    data-deskripsi = "{{ $item->deskripsi }}"
+                                                    data-tema = "{{ $item->tema }}"
+                                                    data-url = "{{ $item->url }}"
                                                     data-id ="{{ $item->id }}">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
@@ -100,7 +103,12 @@
                     </div>
                     <div class="mb-2">
                         <label for="">Tema</label>
-                        <input type="color" name="tema" class="form-control" required>
+                        <select name="tema" id="" class="form-select">
+                            <option value="">-- Pilih Tema --</option>
+                            @foreach ($tema as $item)
+                                <option value="{{ $item->keterangan}}">{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-2">
                         <label for="">url</label>
@@ -119,4 +127,71 @@
           </div>
         </div>
     </div>
+
+    <div class="modal" id="edit" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form action="{{ url('zelnaralink/linkmaster/id')}}" method="post">
+                @csrf
+                @method('patch')
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Link</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id">
+                    <div class="mb-2">
+                        <label for="">Judul Link</label>
+                        <input type="text" name="judul" id="judul" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="">Deskripsi</label>
+                        <input type="text" name="deskripsi" id="deskripsi" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="">Tema</label>
+                        <select name="tema" id="tema" class="form-select">
+                            @foreach ($tema as $item)
+                                <option value="{{ $item->keterangan}}">{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label for="">url</label>
+                        <input type="text" name="url" id="url" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="">Gambar</label>
+                        <input type="file" name="gambar" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">SIMPAN PERUBAHAN</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <x-slot name="kodejs">
+        <script>
+            $('#edit').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget)
+                var judul = button.data('judul')
+                var deskripsi = button.data('deskripsi')
+                var url = button.data('url')
+                var tema = button.data('tema')
+                var id = button.data('id')
+        
+                var modal = $(this)
+        
+                modal.find('.modal-body #judul').val(judul);
+                modal.find('.modal-body #deskripsi').val(deskripsi);
+                modal.find('.modal-body #url').val(url);
+                modal.find('.modal-body #tema').val(tema);
+                modal.find('.modal-body #id').val(id);
+            })
+        </script>
+    </x-slot>
 </x-mazer-layout>
