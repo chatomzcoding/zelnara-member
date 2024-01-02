@@ -23,5 +23,8 @@ Route::middleware([
         Route::get('/', 'MemberController@index');
         Route::get('/layanan', 'MemberController@layanan');
         Route::post('/', 'MemberController@store');
+
+        // LAYANAN
+        Route::resource('layananlink',LayananlinkController::class);
     });
 });
