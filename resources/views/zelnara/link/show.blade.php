@@ -19,12 +19,12 @@
     .grad {
         background-image: {{ $linkmaster->tema }};
     }
-    
+
   </style>
 </head>
 
 <body>
-    <script src="assets/static/js/initTheme.js"></script>
+    {{-- <script src="assets/static/js/initTheme.js"></script> --}}
     {{-- <div id="error" style="background-color: {{ $linkmaster->tema}}"> --}}
     <div id="error" class="grad">
         <div class="error-page container">
@@ -34,9 +34,29 @@
                     <h1 class="judul text-dark">{{ $linkmaster->judul }}</h1>
                     <p class='fs-5 text-white'>{{ $linkmaster->deskripsi}}</p>
                 </div>
+                <div>
+                    {{--button  --}}
+                    <div class="buttons">
+                        @foreach ($linkmaster->linkmasterbutton as $item)
+                            <a href="{{ $item->url}}" target="_blank" data-s="{{ Crypt::encryptString('jumlah_link_button')}}" data-id="{{ Crypt::encryptString($item->id)}}" class="btn btn-block btn-light icon icon-left">{!! $item->icon !!} {{$item->nama}}</a> <br>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <script src="{{ asset('template/mazer/assets/extensions/jquery/jquery.min.js')}}"></script>
+
+    <script>
+        $('.btn').on('click', function () {
+            let id = $(this).data('id');
+            let s = $(this).data('s');
+            
+            $.get("{{ url('api/ajax')}}", {'id':id,'s':s}, function (response) {
+                
+            });
+        });
+    </script>
 </body>
 
 </html>
