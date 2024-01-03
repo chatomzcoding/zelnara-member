@@ -33,7 +33,7 @@
                                         <th>Kode</th>
                                         <th>Tagline</th>
                                         <th>Deskripsi</th>
-                                        <th>Url</th>
+                                        <th>Penggunaan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -48,7 +48,19 @@
                                             <td>{{ $item->kode }}</td>
                                             <td>{{ $item->tagline }}</td>
                                             <td>{{ $item->deskripsi }}</td>
-                                            <td>{{ $item->url }}</td>
+                                            <td class="text-center">
+                                                @switch($item->kode)
+                                                    @case('link')
+                                                        {{ $item->linkmaster()->count()}} link
+                                                        @break
+                                                    @case(2)
+                                                        
+                                                        @break
+                                                    @default
+                                                        
+                                                @endswitch
+
+                                            </td>
                                             <td class="text-center">
                                                 <a href="{{ url('member/layananlink/'.Crypt::encryptString($item->id))}}" class="btn btn-primary btn-sm btn-icon"><i class="bi bi-file-text"></i></a>
                                                 <button
