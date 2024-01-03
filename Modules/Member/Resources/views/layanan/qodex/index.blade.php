@@ -101,111 +101,76 @@
             </div>
         </section>
     </div>
-    <div class="modal" id="tambah" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('layanan/qodexmaster')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="member_id" value="{{ $user->member->id}}">
-                <input type="hidden" name="layanan_id" value="{{ $layanan->id}}">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Qodex</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-2">
-                        <label for="">Nama Qodex</label>
-                        <input type="text" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Keterangan</label>
-                        <input type="text" name="keterangan" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Kategori</label>
-                        <select name="kategori" id="" class="form-select" required>
-                            <option value="">-- Pilih Kategori --</option>
-                            <option value="qrcode">Qr Code</option>
-                            <option value="barcode">Barcode</option>
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">isi Qodex</label>
-                        <input type="text" name="isi" class="form-control" maxlength="225" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Kode</label>
-                        <input type="text" name="kode" class="form-control" maxlength="225">
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Ukuran</label>
-                        <input type="number" name="ukuran" min="1" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Gambar</label>
-                        <input type="file" name="gambar" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">SIMPAN</button>
-                </div>
-            </form>
-          </div>
+    <x-bsmodal id="tambah" kategori="tambah" judul="Tambah Qodex" link="layanan/qodexmaster">
+        <input type="hidden" name="member_id" value="{{ $user->member->id}}">
+        <input type="hidden" name="layanan_id" value="{{ $layanan->id}}">
+        <div class="mb-2">
+            <label for="">Nama Qodex</label>
+            <input type="text" name="nama" class="form-control" required>
         </div>
-    </div>
-    <div class="modal" id="edit" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('layanan/qodexmaster/id')}}" method="post">
-                @csrf
-                @method('patch')
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Qodex</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-2">
-                        <label for="">Nama Qodex</label>
-                        <input type="text" name="nama" id="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Keterangan</label>
-                        <input type="text" name="keterangan" id="keterangan" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Kategori</label>
-                        <select name="kategori" id="kategori" class="form-select" required>
-                            <option value="qrcode">Qr Code</option>
-                            <option value="barcode">Barcode</option>
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">isi Qodex</label>
-                        <input type="text" name="isi" id="isi" class="form-control" maxlength="225" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Kode</label>
-                        <input type="text" name="kode" id="kode" class="form-control" maxlength="225">
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Ukuran</label>
-                        <input type="number" name="ukuran" id="ukuran" min="1" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Gambar</label>
-                        <input type="file" name="gambar" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">SIMPAN PERUBAHAN</button>
-                </div>
-            </form>
-          </div>
+        <div class="mb-2">
+            <label for="">Keterangan</label>
+            <input type="text" name="keterangan" class="form-control">
         </div>
-    </div>
+        <div class="mb-2">
+            <label for="">Kategori</label>
+            <select name="kategori" id="" class="form-select" required>
+                <option value="">-- Pilih Kategori --</option>
+                <option value="qrcode">Qr Code</option>
+                <option value="barcode">Barcode</option>
+            </select>
+        </div>
+        <div class="mb-2">
+            <label for="">isi Qodex</label>
+            <input type="text" name="isi" class="form-control" maxlength="225" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Kode</label>
+            <input type="text" name="kode" class="form-control" maxlength="225">
+        </div>
+        <div class="mb-2">
+            <label for="">Ukuran</label>
+            <input type="number" name="ukuran" min="1" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label for="">Gambar</label>
+            <input type="file" name="gambar" class="form-control">
+        </div>
+    </x-bsmodal>
+    
+    <x-bsmodal id="edit" kategori="edit" judul="Edit Qodex" link="layanan/qodexmaster/id'">
+        <div class="mb-2">
+            <label for="">Nama Qodex</label>
+            <input type="text" name="nama" id="nama" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Keterangan</label>
+            <input type="text" name="keterangan" id="keterangan" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label for="">Kategori</label>
+            <select name="kategori" id="kategori" class="form-select" required>
+                <option value="qrcode">Qr Code</option>
+                <option value="barcode">Barcode</option>
+            </select>
+        </div>
+        <div class="mb-2">
+            <label for="">isi Qodex</label>
+            <input type="text" name="isi" id="isi" class="form-control" maxlength="225" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Kode</label>
+            <input type="text" name="kode" id="kode" class="form-control" maxlength="225">
+        </div>
+        <div class="mb-2">
+            <label for="">Ukuran</label>
+            <input type="number" name="ukuran" id="ukuran" min="1" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label for="">Gambar</label>
+            <input type="file" name="gambar" class="form-control">
+        </div>
+    </x-bsmodal>
 
     <x-slot name="kodejs">
         <script>
