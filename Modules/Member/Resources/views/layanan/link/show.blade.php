@@ -1,23 +1,16 @@
 <x-mazer-layout title="Zelnara Link" menu="layanan">
     <div class="page-heading">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Zelnara Link</h3>
-                    <p class="text-subtitle text-muted">Detail Link {{ $linkmaster->judul}}.</p>
-                </div>
-                <div class="col-12 col-md-6 order-md-2 order-first">
-                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ url('/member/layanan')}}">Layanan</a></li>
-                            <li class="breadcrumb-item"><a href="{{ url('/member/layanan/'.$linkmaster->layanan->kode)}}">{{ $linkmaster->layanan->nama }}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Detail Link</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        <x-mzheader 
+            judul="{{ $linkmaster->layanan->nama}}"
+            deskripsi="Detail Link {{ $linkmaster->judul}}"
+            :link="[
+                '/member/layanan' => 'Layanan',
+                '/member/layanan/'.$linkmaster->layanan->kode => $linkmaster->layanan->nama
+            ]"
+            halaman="Detail Link"
+        >
+    
+        </x-mzheader>
         <section class="section">
             <div class="card">
                 <div class="card-header">

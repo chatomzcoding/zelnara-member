@@ -1,21 +1,10 @@
 <x-mazer-layout title="Data Pokok" menu="datapokok">
     <div class="page-heading">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Data Pokok</h3>
-                    <p class="text-subtitle text-muted">Kelola dan Manajemen Data Pokok.</p>
-                </div>
-                <div class="col-12 col-md-6 order-md-2 order-first">
-                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Data Pokok</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        <x-mzheader
+            judul="Data Pokok"
+            deskripsi="Kelola dan Manajemen Data Pokok."
+            halaman="Data Pokok">
+        </x-mzheader>
         <section class="section">
             <div class="card">
                 <div class="card-body">
