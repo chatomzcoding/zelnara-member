@@ -1,5 +1,6 @@
 {
     "Superadmin": true,
     "Member": true,
-    "Zelnaralink": true
+    "Zelnaralink": true,
+    "Layanan": true
 }
