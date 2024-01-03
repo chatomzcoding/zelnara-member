@@ -19,20 +19,16 @@
         <section class="section">
             <div class="row">
                 @forelse ($layanan as $item)
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card">
                             <div class="card-content">
-                                <img class="card-img-top img-fluid" src="{{ asset('img/sistem/'.$item->logo)}}" alt="Card image cap"
-                                    style="height: 20rem" />
+                                <img class="card-img-top img-fluid" src="{{ asset('img/sistem/'.$item->logo)}}" alt="Card image cap"/>
                                 <div class="card-body">
                                     <h4 class="card-title">{{ $item->nama }}</h4>
-                                    <p class="card-text">
+                                    <p class="card-text text-muted">
                                        {{ $item->deskripsi}}
                                     </p>
-                                    {{-- <p class="card-text">
-                                        Cupcake fruitcake macaroon donut pastry gummies tiramisu chocolate bar muffin.
-                                    </p> --}}
-                                    <a href="{{ url('member/layanan/'.$item->kode)}}" class="btn btn-primary block">BUAT</a>
+                                    <a href="{{ url('member/layanan/'.$item->kode)}}" class="btn btn-primary btn-block">SELENGKAPNYA</a>
                                 </div>
                             </div>
                         </div>
