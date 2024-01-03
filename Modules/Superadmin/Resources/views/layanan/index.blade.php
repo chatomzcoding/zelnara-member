@@ -95,94 +95,59 @@
             </div>
         </section>
     </div>
-    <div class="modal" id="tambah" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('superadmin/layanan')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Layanan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-2">
-                        <label for="">Nama</label>
-                        <input type="text" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Tagline</label>
-                        <input type="text" name="tagline" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Kode</label>
-                        <input type="text" name="kode" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">url</label>
-                        <input type="text" name="url" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Logo</label>
-                        <input type="file" name="logo" class="form-control" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">SIMPAN</button>
-                </div>
-            </form>
-          </div>
+    <x-bsmodal id="tambah" kategori="tambah" link="superadmin/layanan" judul="Tambah Layanan">
+        <div class="mb-2">
+            <label for="">Nama</label>
+            <input type="text" name="nama" value="{{ old('nama')}}" class="form-control" required>
         </div>
-    </div>
-    <div class="modal" id="editlink" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('superadmin/layanan/id')}}" method="post">
-                @csrf
-                @method('patch')
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Layanan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-2">
-                        <label for="">Nama</label>
-                        <input type="text" name="nama" id="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Tagline</label>
-                        <input type="text" name="tagline" id="tagline" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Kode</label>
-                        <input type="text" name="kode" id="kode" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Deskripsi</label>
-                        <input type="text" name="deskripsi" id="deskripsi" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">url</label>
-                        <input type="text" name="url" id="url" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Logo</label>
-                        <input type="file" name="logo" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">SIMPAN PERUBAHAN</button>
-                </div>
-            </form>
-          </div>
+        <div class="mb-2">
+            <label for="">Tagline</label>
+            <input type="text" name="tagline" value="{{ old('tagline')}}" class="form-control" required>
         </div>
-    </div>
+        <div class="mb-2">
+            <label for="">Kode</label>
+            <input type="text" name="kode" value="{{ old('kode')}}" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Deskripsi</label>
+            <input type="text" name="deskripsi" value="{{ old('deskripsi')}}" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">url</label>
+            <input type="text" name="url" value="{{ old('url')}}" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Logo</label>
+            <input type="file" name="logo" class="form-control" required>
+        </div>
+    </x-bsmodal>
+
+    <x-bsmodal id="editlink" kategori="edit" judul="Edit Layanan" link="superadmin/layanan/id">
+        <div class="mb-2">
+            <label for="">Nama</label>
+            <input type="text" name="nama" id="nama" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Tagline</label>
+            <input type="text" name="tagline" id="tagline" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Kode</label>
+            <input type="text" name="kode" id="kode" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Deskripsi</label>
+            <input type="text" name="deskripsi" id="deskripsi" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">url</label>
+            <input type="text" name="url" id="url" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Logo</label>
+            <input type="file" name="logo" class="form-control">
+        </div>
+    </x-bsmodal>
 
     <x-slot name="kodejs">
         <script>
