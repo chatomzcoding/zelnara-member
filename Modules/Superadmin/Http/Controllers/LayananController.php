@@ -37,6 +37,8 @@ class LayananController extends Controller
     {
         $layanan = New Layanan;
         $layanan->nama = $request->nama;
+        $layanan->kode = $request->kode;
+        $layanan->tagline = $request->tagline;
         $layanan->deskripsi = $request->deskripsi;
         $layanan->url = $request->url;
 
@@ -83,6 +85,8 @@ class LayananController extends Controller
     {
         $layanan = Layanan::find($request->id);
         $layanan->nama = $request->nama;
+        $layanan->kode = $request->kode;
+        $layanan->tagline = $request->tagline;
         $layanan->deskripsi = $request->deskripsi;
         $layanan->url = $request->url;
 

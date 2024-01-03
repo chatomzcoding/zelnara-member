@@ -30,6 +30,8 @@
                                         <th width="5%">No</th>
                                         <th>Logo</th>
                                         <th>Nama</th>
+                                        <th>Kode</th>
+                                        <th>Tagline</th>
                                         <th>Deskripsi</th>
                                         <th>Url</th>
                                         <th>Aksi</th>
@@ -43,6 +45,8 @@
                                                 <img src="{{ asset('img/sistem/'.$item->logo)}}" alt="" width="70px">
                                             </td>
                                             <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->kode }}</td>
+                                            <td>{{ $item->tagline }}</td>
                                             <td>{{ $item->deskripsi }}</td>
                                             <td>{{ $item->url }}</td>
                                             <td class="text-center">
@@ -52,6 +56,8 @@
                                                     data-bs-target="#editlink"
                                                     data-bs-toggle="modal"
                                                     data-nama = "{{ $item->nama }}"
+                                                    data-kode = "{{ $item->kode }}"
+                                                    data-tagline = "{{ $item->tagline }}"
                                                     data-deskripsi = "{{ $item->deskripsi }}"
                                                     data-url = "{{ $item->url }}"
                                                     data-id ="{{ $item->id }}">
@@ -66,7 +72,7 @@
                                         </tr>
                                     @empty
                                         <tr class="text-center">
-                                            <td colspan="6">belum ada data</td>
+                                            <td colspan="8">belum ada data</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -90,6 +96,14 @@
                     <div class="mb-2">
                         <label for="">Nama</label>
                         <input type="text" name="nama" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="">Tagline</label>
+                        <input type="text" name="tagline" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="">Kode</label>
+                        <input type="text" name="kode" class="form-control" required>
                     </div>
                     <div class="mb-2">
                         <label for="">Deskripsi</label>
@@ -129,6 +143,14 @@
                         <input type="text" name="nama" id="nama" class="form-control" required>
                     </div>
                     <div class="mb-2">
+                        <label for="">Tagline</label>
+                        <input type="text" name="tagline" id="tagline" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="">Kode</label>
+                        <input type="text" name="kode" id="kode" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
                         <label for="">Deskripsi</label>
                         <input type="text" name="deskripsi" id="deskripsi" class="form-control" required>
                     </div>
@@ -155,6 +177,8 @@
             $('#editlink').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget)
                 var nama = button.data('nama')
+                var kode = button.data('kode')
+                var tagline = button.data('tagline')
                 var deskripsi = button.data('deskripsi')
                 var url = button.data('url')
                 var id = button.data('id')
@@ -162,6 +186,8 @@
                 var modal = $(this)
         
                 modal.find('.modal-body #nama').val(nama);
+                modal.find('.modal-body #kode').val(kode);
+                modal.find('.modal-body #tagline').val(tagline);
                 modal.find('.modal-body #deskripsi').val(deskripsi);
                 modal.find('.modal-body #url').val(url);
                 modal.find('.modal-body #id').val(id);
