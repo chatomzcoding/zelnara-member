@@ -17,183 +17,30 @@
             </div>
         </div>
         <section class="section">
-            <div class="card">
-                <div class="card-header">
-                    Zelnara Link
-                </div>
-                <div class="card-body">
-                    <header>
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#tambahlink"><i class="bi bi-plus-circle"></i> Tambah Link</button>
-                    </header>
-                    <main>
-                        <div class="table-responsive mt-3">
-                            <table class="table">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th width="5%">No</th>
-                                        <th>Gambar</th>
-                                        <th>Judul</th>
-                                        <th>Deskripsi</th>
-                                        <th>Url</th>
-                                        <th>View</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($user->member->linkmaster as $item)
-                                        <tr>
-                                            <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>
-                                                <img src="{{ asset('img/layanan/link/'.$item->gambar)}}" alt="" width="70px">
-                                            </td>
-                                            <td>{{ $item->judul }}</td>
-                                            <td>{{ $item->deskripsi }}</td>
-                                            <td>
-                                                <a href="https://link.zelnara.com/{{ $item->url}}" target="_blank">{{ $item->getUrl()}}</a>
-                                            </td>
-                                            <td class="text-center">{{ $item->view }}</td>
-                                            <td class="text-center">
-                                                <a href="{{ url('member/layananlink/'.Crypt::encryptString($item->id))}}" class="btn btn-primary btn-sm btn-icon"><i class="bi bi-file-text"></i></a>
-                                                <button
-                                                    class="btn btn-success btn-sm btn-icon"
-                                                    data-bs-target="#editlink"
-                                                    data-bs-toggle="modal"
-                                                    data-judul = "{{ $item->judul }}"
-                                                    data-deskripsi = "{{ $item->deskripsi }}"
-                                                    data-tema = "{{ $item->tema }}"
-                                                    data-url = "{{ $item->url }}"
-                                                    data-id ="{{ $item->id }}">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <form action="{{ url('zelnaralink/linkmaster/'.$item->id)}}" method="post" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr class="text-center">
-                                            <td colspan="4">belum ada data</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
+            <div class="row">
+                @forelse ($layanan as $item)
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-content">
+                                <img class="card-img-top img-fluid" src="{{ asset('img/sistem/'.$item->logo)}}" alt="Card image cap"
+                                    style="height: 20rem" />
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ $item->nama }}</h4>
+                                    <p class="card-text">
+                                       {{ $item->deskripsi}}
+                                    </p>
+                                    {{-- <p class="card-text">
+                                        Cupcake fruitcake macaroon donut pastry gummies tiramisu chocolate bar muffin.
+                                    </p> --}}
+                                    <a href="{{ url('member/layanan/'.$item->kode)}}" class="btn btn-primary block">BUAT</a>
+                                </div>
+                            </div>
                         </div>
-                    </main>
-                </div>
+                    </div>
+                @empty
+                    
+                @endforelse
             </div>
         </section>
     </div>
-    <div class="modal" id="tambahlink" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('zelnaralink/linkmaster')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="member_id" value="{{ $user->member->id}}">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Link</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-2">
-                        <label for="">Judul Link</label>
-                        <input type="text" name="judul" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Tema</label>
-                        <select name="tema" id="" class="form-select">
-                            <option value="">-- Pilih Tema --</option>
-                            @foreach ($tema as $item)
-                                <option value="{{ $item->keterangan}}">{{ $item->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">url</label>
-                        <input type="text" name="url" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Gambar</label>
-                        <input type="file" name="gambar" class="form-control" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">SIMPAN</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
-    <div class="modal" id="editlink" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('zelnaralink/linkmaster/id')}}" method="post">
-                @csrf
-                @method('patch')
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Link</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-2">
-                        <label for="">Judul Link</label>
-                        <input type="text" name="judul" id="judul" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Deskripsi</label>
-                        <input type="text" name="deskripsi" id="deskripsi" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Tema</label>
-                        <select name="tema" id="tema" class="form-select">
-                            @foreach ($tema as $item)
-                                <option value="{{ $item->keterangan}}">{{ $item->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">url</label>
-                        <input type="text" name="url" id="url" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Gambar</label>
-                        <input type="file" name="gambar" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">SIMPAN PERUBAHAN</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
-
-    <x-slot name="kodejs">
-        <script>
-            $('#editlink').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget)
-                var judul = button.data('judul')
-                var deskripsi = button.data('deskripsi')
-                var url = button.data('url')
-                var tema = button.data('tema')
-                var id = button.data('id')
-        
-                var modal = $(this)
-        
-                modal.find('.modal-body #judul').val(judul);
-                modal.find('.modal-body #deskripsi').val(deskripsi);
-                modal.find('.modal-body #url').val(url);
-                modal.find('.modal-body #tema').val(tema);
-                modal.find('.modal-body #id').val(id);
-            })
-        </script>
-    </x-slot>
 </x-mazer-layout>

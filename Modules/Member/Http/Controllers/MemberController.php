@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Superadmin\Entities\Kategori;
+use Modules\Superadmin\Entities\Layanan;
 use Modules\Superadmin\Entities\Member;
 
 class MemberController extends Controller
@@ -25,8 +26,27 @@ class MemberController extends Controller
     public function layanan()
     {
         $user = User::find(Auth::user()->id);
-        $tema   = Kategori::where('label','link-tema')->get();
-        return view('member::layanan.index', compact('user','tema'));
+        $layanan = Layanan::all();
+        return view('member::layanan.index', compact('user','layanan'));
+    }
+    public function layananshow($kode)
+    {
+        $user = User::find(Auth::user()->id);
+        $layanan = Layanan::where('kode',$kode)->first();
+        if ($layanan) {
+            switch ($kode) {
+                case 'link':
+                    $tema       = Kategori::where('label','link-tema')->get();
+                    return view('member::layanan.link.index', compact('user','tema','layanan'));
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        } else {
+            return redirect('dashboard');
+        }
     }
 
     /**

@@ -22,6 +22,7 @@ Route::middleware([
     Route::prefix('member')->group(function() {
         Route::get('/', 'MemberController@index');
         Route::get('/layanan', 'MemberController@layanan');
+        Route::get('/layanan/{kode}', 'MemberController@layananshow');
         Route::post('/', 'MemberController@store');
 
         // LAYANAN

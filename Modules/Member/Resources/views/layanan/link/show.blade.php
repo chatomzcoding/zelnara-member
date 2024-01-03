@@ -11,6 +11,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('/dashboard')}}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{ url('/member/layanan')}}">Layanan</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/member/layanan/link')}}">Zelnara Link</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Detail Link</li>
                         </ol>
                     </nav>
