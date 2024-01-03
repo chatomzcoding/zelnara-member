@@ -53,8 +53,8 @@
                                                     @case('link')
                                                         {{ $item->linkmaster()->count()}} link
                                                         @break
-                                                    @case(2)
-                                                        
+                                                    @case('qodex')
+                                                        {{ $item->qodexmaster()->count()}} Qodex
                                                         @break
                                                     @default
                                                         

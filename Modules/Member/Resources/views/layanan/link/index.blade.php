@@ -73,7 +73,7 @@
                                         </tr>
                                     @empty
                                         <tr class="text-center">
-                                            <td colspan="4">belum ada data</td>
+                                            <td colspan="7">belum ada data</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -90,6 +90,7 @@
             <form action="{{ url('zelnaralink/linkmaster')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="member_id" value="{{ $user->member->id}}">
+                <input type="hidden" name="layanan_id" value="{{ $layanan->id}}">
                 <div class="modal-header">
                     <h5 class="modal-title">Tambah Link</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

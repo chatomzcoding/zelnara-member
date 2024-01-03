@@ -15,6 +15,11 @@ class Qodexmaster extends Model
 
     protected $guarded = [];
 
+    function getUkuran() {
+        $ukuran = (!is_null($this->ukuran)) ? $this->ukuran : 100 ;
+        return $ukuran;
+    }
+
     function layanan(){
         return $this->belongsTo(Layanan::class);
     }

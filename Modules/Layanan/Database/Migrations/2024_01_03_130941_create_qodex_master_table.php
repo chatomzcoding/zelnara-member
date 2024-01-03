@@ -16,7 +16,7 @@ class CreateQodexMasterTable extends Migration
         Schema::create('qodex_master', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->integer('ukuran');
+            $table->integer('ukuran')->nullable();
             $table->string('isi');
             $table->string('kategori'); // qrcode || barcode
             $table->string('kode')->nullable(); // qrcode || barcode

@@ -57,7 +57,7 @@ class QodexmasterController extends Controller
 
         $qodex->save();
 
-        return back()->witg('ts','Qodex berhasil ditambahkan');
+        return back()->with('ts','Qodex berhasil ditambahkan');
     }
 
     /**
@@ -109,7 +109,7 @@ class QodexmasterController extends Controller
 
         $qodex->save();
 
-        return back()->witg('ts','Qodex berhasil diperbaharui');
+        return back()->with('ts','Qodex berhasil diperbaharui');
     }
 
     /**
@@ -121,6 +121,6 @@ class QodexmasterController extends Controller
     {
         Qodexmaster::find($id)->delete();
         
-        return back()->witg('ts','Qodex berhasil dihapus');
+        return back()->with('ts','Qodex berhasil dihapus');
     }
 }
