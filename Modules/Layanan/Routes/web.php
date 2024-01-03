@@ -11,6 +11,17 @@
 |
 */
 
-Route::prefix('layanan')->group(function() {
-    Route::get('/', 'LayananController@index');
+use Illuminate\Support\Facades\Route;
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'member'
+])->group(function () {
+    Route::prefix('layanan')->group(function() {
+        Route::get('/', 'LayananController@index');
+
+        Route::resource('qodexmaster', QodexmasterController::class);
+    });
 });

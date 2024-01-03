@@ -15,12 +15,11 @@ class LayananqodexController extends Controller
      */
     public function index()
     {
-        echo phpinfo();
-        echo QrCode::format('png')->merge('../public/img/pisang.jpg')->generate('hallo');
+        // QrCode::format('png')->size(200)->merge('/public/img/pisang.jpg')->generate('https://djuraganindonesia.com', '../public/img/'.time().'.png');
+
+        // echo QrCode::merge('../public/img/pisang.jpg')->generate('hallo');
         // echo QrCode::generate('hallo');
         // echo QrCode::format('png')->generate('hallo');
-        // QrCode::size(150)->generate('Make me into a QrCode!', '../public/img/'.time().'.svg');
-        die();
         return view('member::index');
     }
 
