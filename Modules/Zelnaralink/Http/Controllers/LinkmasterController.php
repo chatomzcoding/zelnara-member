@@ -34,8 +34,13 @@ class LinkmasterController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'url' => 'unique:link_master',
+        ]);
+
         $linkmaster = New Linkmaster;
         $linkmaster->member_id = $request->member_id;
+        $linkmaster->layanan_id = $request->layanan_id;
         $linkmaster->judul = $request->judul;
         $linkmaster->deskripsi = $request->deskripsi;
         $linkmaster->tema = $request->tema;
