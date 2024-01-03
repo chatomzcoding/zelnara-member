@@ -85,7 +85,7 @@
         </section>
     </div>
 
-    <x-bsmodal id="tambah" kategori="tambah" link="superadmin/kategori">
+    <x-bsmodal id="tambah" kategori="tambah" judul="Tambah Kategori" link="superadmin/kategori">
         <div class="mb-2">
             <label for="">Nama Kategori</label>
             <input type="text" name="nama" class="form-control" required>
@@ -105,7 +105,7 @@
         </div>
     </x-bsmodal>
 
-    <x-bsmodal id="edit" kategori="edit" link="superadmin/kategori/id">
+    <x-bsmodal id="edit" kategori="edit" judul="Edit Kategori" link="superadmin/kategori/id">
         <div class="mb-2">
             <label for="">Nama Kategori</label>
             <input type="text" name="nama" id="nama" class="form-control" required>
