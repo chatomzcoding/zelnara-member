@@ -18,6 +18,13 @@
             </div>
         </div>
         <section class="section">
+            <div class="visible-print text-center">
+                {!! QrCode::size(200)->generate('https://link.zelnara.com/djuraganprestige'); !!}
+                <p>Scan me to return to the original page.</p>
+            </div>
+
+            {!! QrCode::generate('Make me into a QrCode!'); !!}
+
         </section>
     </div>
 </x-mazer-layout>
