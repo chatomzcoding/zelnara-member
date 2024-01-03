@@ -30,6 +30,13 @@
         @if ($user->level == 'superadmin')
             <li class="sidebar-title">Superadmin</li>
             <li
+                class="sidebar-item {{ menuaktif($menuaktif,'superadmin-layanan')}}">
+                <a href="{{ url('superadmin/layanan')}}" class='sidebar-link'>
+                    <i class="bi bi-file-text"></i>
+                    <span>Data Layanan</span>
+                </a>
+            </li>
+            <li
                 class="sidebar-item {{ menuaktif($menuaktif,'superadmin-member')}}">
                 <a href="{{ url('superadmin/member')}}" class='sidebar-link'>
                     <i class="bi bi-people"></i>
