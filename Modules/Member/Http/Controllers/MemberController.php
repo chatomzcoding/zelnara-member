@@ -39,6 +39,9 @@ class MemberController extends Controller
                     $tema       = Kategori::where('label','link-tema')->get();
                     return view('member::layanan.link.index', compact('user','tema','layanan'));
                     break;
+                case 'qodex':
+                    return view('member::layanan.qodex.index', compact('user','layanan'));
+                    break;
                 
                 default:
                     # code...
