@@ -85,80 +85,45 @@
         </section>
     </div>
 
-    <div class="modal" id="tambah" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('superadmin/kategori')}}" method="post">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Kategori</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-2">
-                        <label for="">Nama Kategori</label>
-                        <input type="text" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Label Kategori</label>
-                        <select name="label" id="" class="form-select" required>
-                            <option value="">-- pilih label --</option>
-                            @foreach (data_label() as $item)
-                                <option value="{{ $item}}">{{ $item}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Keterangan</label>
-                        <textarea name="keterangan" id="" cols="30" rows="5" class="form-control"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">SIMPAN</button>
-                </div>
-            </form>
-          </div>
+    <x-bsmodal id="tambah" kategori="tambah" link="superadmin/kategori">
+        <div class="mb-2">
+            <label for="">Nama Kategori</label>
+            <input type="text" name="nama" class="form-control" required>
         </div>
-    </div>
-    <div class="modal" id="edit" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('superadmin/kategori/id')}}" method="post">
-                @csrf
-                @method('patch')
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Kategori</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-2">
-                        <label for="">Nama Kategori</label>
-                        <input type="text" name="nama" id="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Label Kategori</label>
-                        <select name="label" id="label" class="form-select" required>
-                            <option value="">-- pilih label --</option>
-                            @foreach (data_label() as $item)
-                                <option value="{{ $item}}">{{ $item}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" cols="30" rows="5" class="form-control"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">SIMPAN PERUBAHAN</button>
-                </div>
-            </form>
-          </div>
+        <div class="mb-2">
+            <label for="">Label Kategori</label>
+            <select name="label" id="" class="form-select" required>
+                <option value="">-- pilih label --</option>
+                @foreach (data_label() as $item)
+                    <option value="{{ $item}}">{{ $item}}</option>
+                @endforeach
+            </select>
         </div>
-    </div>
+        <div class="mb-2">
+            <label for="">Keterangan</label>
+            <textarea name="keterangan" id="" cols="30" rows="5" class="form-control"></textarea>
+        </div>
+    </x-bsmodal>
+
+    <x-bsmodal id="edit" kategori="edit" link="superadmin/kategori/id">
+        <div class="mb-2">
+            <label for="">Nama Kategori</label>
+            <input type="text" name="nama" id="nama" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Label Kategori</label>
+            <select name="label" id="label" class="form-select" required>
+                <option value="">-- pilih label --</option>
+                @foreach (data_label() as $item)
+                    <option value="{{ $item}}">{{ $item}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-2">
+            <label for="">Keterangan</label>
+            <textarea name="keterangan" id="keterangan" cols="30" rows="5" class="form-control"></textarea>
+        </div>
+    </x-bsmodal>
 
     <x-slot name="kodejs">
         <script>
