@@ -202,164 +202,91 @@
             </div>
         </section>
     </div>
-
-    <div class="modal" id="tambah" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('zelnaralink/linkmasterbutton')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="linkmaster_id" value="{{ $linkmaster->id}}">
-                <input type="hidden" name="jumlah_klik" value="0">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Link</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-2">
-                        <label for="">Nama Button</label>
-                        <input type="text" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Icon Link</label>
-                        <select name="icon" id="" class="form-select">
-                            <option value="">-- Pilih Icon --</option>
-                            @foreach ($icon as $item)
-                                <option value="{{ $item->keterangan}}">{{ $item->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">url</label>
-                        <input type="text" name="url" class="form-control" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">SIMPAN</button>
-                </div>
-            </form>
-          </div>
+    <x-bsmodal id="tambah" kategori="tambah" judul="Tambah Link" link="zelnaralink/linkmasterbutton">
+        <input type="hidden" name="linkmaster_id" value="{{ $linkmaster->id}}">
+        <input type="hidden" name="jumlah_klik" value="0">
+        <div class="mb-2">
+            <label for="">Nama Button</label>
+            <input type="text" name="nama" class="form-control" required>
         </div>
-    </div>
-    <div class="modal" id="tambahkatalog" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('zelnaralink/linkmasterkatalog')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="linkmaster_id" value="{{ $linkmaster->id}}">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Katalog</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-2">
-                        <label for="">Nama Katalog</label>
-                        <input type="text" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Tagline/Promo (max 20 huruf)</label>
-                        <input type="text" name="tagline" class="form-control" maxlength="20">
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Harga</label>
-                        <input type="text" name="harga" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Deskripsi</label>
-                        <textarea name="deskripsi" id="" cols="30" rows="4" class="form-control" required></textarea>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Gambar</label>
-                        <input type="file" name="gambar" class="form-control" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">SIMPAN</button>
-                </div>
-            </form>
-          </div>
+        <div class="mb-2">
+            <label for="">Icon Link</label>
+            <select name="icon" id="" class="form-select">
+                <option value="">-- Pilih Icon --</option>
+                @foreach ($icon as $item)
+                    <option value="{{ $item->keterangan}}">{{ $item->nama }}</option>
+                @endforeach
+            </select>
         </div>
-    </div>
-    <div class="modal" id="edit" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('zelnaralink/linkmasterbutton/id')}}" method="post">
-                @csrf
-                @method('patch')
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Link Button</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-2">
-                        <label for="">Nama Button</label>
-                        <input type="text" name="nama" id="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Icon Link</label>
-                        <select name="icon" id="icon" class="form-select">
-                            <option value="">-- Pilih Icon --</option>
-                            @foreach ($icon as $item)
-                                <option value="{{ $item->keterangan}}">{{ $item->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">url</label>
-                        <input type="text" name="url" id="url" class="form-control" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">SIMPAN PERUBAHAN</button>
-                </div>
-            </form>
-          </div>
+        <div class="mb-2">
+            <label for="">url</label>
+            <input type="text" name="url" class="form-control" required>
         </div>
-    </div>
-    <div class="modal" id="editkatalog" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('zelnaralink/linkmasterkatalog/id')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                @method('patch')
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Katalog</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-2">
-                        <label for="">Nama Katalog</label>
-                        <input type="text" name="nama" id="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Tagline/Promo (max 20 huruf)</label>
-                        <input type="text" name="tagline" id="tagline" class="form-control" maxlength="20">
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Harga</label>
-                        <input type="text" name="harga" id="harga" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Deskripsi</label>
-                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="4" class="form-control" required></textarea>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Gambar</label>
-                        <input type="file" name="gambar" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">SIMPAN PERUBAHAN</button>
-                </div>
-            </form>
-          </div>
+    </x-bsmodal>
+    <x-bsmodal id="tambahkatalog" kategori="tambah" judul="Tambah Katalog" link="zelnaralink/linkmasterkatalog">
+        <input type="hidden" name="linkmaster_id" value="{{ $linkmaster->id}}">
+        <div class="mb-2">
+            <label for="">Nama Katalog</label>
+            <input type="text" name="nama" class="form-control" required>
         </div>
-    </div>
+        <div class="mb-2">
+            <label for="">Tagline/Promo (max 20 huruf)</label>
+            <input type="text" name="tagline" class="form-control" maxlength="20">
+        </div>
+        <div class="mb-2">
+            <label for="">Harga</label>
+            <input type="text" name="harga" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label for="">Deskripsi</label>
+            <textarea name="deskripsi" id="" cols="30" rows="4" class="form-control" required></textarea>
+        </div>
+        <div class="mb-2">
+            <label for="">Gambar</label>
+            <input type="file" name="gambar" class="form-control" required>
+        </div>
+    </x-bsmodal>
+    <x-bsmodal id="edit" kategori="edit" judul="Edit Link Button" link="zelnaralink/linkmasterbutton/id">
+        <div class="mb-2">
+            <label for="">Nama Button</label>
+            <input type="text" name="nama" id="nama" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Icon Link</label>
+            <select name="icon" id="icon" class="form-select">
+                <option value="">-- Pilih Icon --</option>
+                @foreach ($icon as $item)
+                    <option value="{{ $item->keterangan}}">{{ $item->nama }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-2">
+            <label for="">url</label>
+            <input type="text" name="url" id="url" class="form-control" required>
+        </div>
+    </x-bsmodal> 
+    <x-bsmodal id="editkatalog" kategori="edit" judul="Edit Katalog" link="zelnaralink/linkmasterkatalog/id">
+        <div class="mb-2">
+            <label for="">Nama Katalog</label>
+            <input type="text" name="nama" id="nama" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Tagline/Promo (max 20 huruf)</label>
+            <input type="text" name="tagline" id="tagline" class="form-control" maxlength="20">
+        </div>
+        <div class="mb-2">
+            <label for="">Harga</label>
+            <input type="text" name="harga" id="harga" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label for="">Deskripsi</label>
+            <textarea name="deskripsi" id="deskripsi" cols="30" rows="4" class="form-control" required></textarea>
+        </div>
+        <div class="mb-2">
+            <label for="">Gambar</label>
+            <input type="file" name="gambar" class="form-control">
+        </div>
+    </x-bsmodal>
 
     <x-slot name="kodejs">
         <script>
