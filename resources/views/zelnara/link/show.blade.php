@@ -102,10 +102,85 @@
                                 </div>
                         </div>
                     @endif
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                @if (!is_null($linkmaster->alamat))
+                                    <tr>
+                                        <td class="text-white">
+                                            <i class="bi bi-geo-alt"></i>
+                                        </td>
+                                        <td class="text-white">
+                                            {{ $linkmaster->alamat}}
+                                        </td>
+                                    </tr>
+                                @endif
+                                @if (!is_null($linkmaster->no_telp))
+                                    <tr>
+                                        <td class="text-white">
+                                            <i class="bi bi-phone"></i>
+                                        </td>
+                                        <td class="text-white">
+                                            {{ $linkmaster->no_telp}}
+                                        </td>
+                                    </tr>
+                                @endif
+                                @if (!is_null($linkmaster->no_wa))
+                                    <tr>
+                                        <td class="text-white">
+                                            <i class="bi bi-whatsapp"></i>
+                                        </td>
+                                        <td class="text-white">
+                                            {{ $linkmaster->no_wa}}
+                                        </td>
+                                    </tr>
+                                    
+                                @endif
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                @if (!is_null($linkmaster->jam_kerja))
+                                    <tr>
+                                        <td class="text-white">
+                                            <i class="bi bi-clock"></i>
+                                        </td>
+                                        <td class="text-white">
+                                            Jam Kerja | {{ $linkmaster->jam_kerja}}
+                                        </td>
+                                    </tr>
+                                @endif
+                                @if (!is_null($linkmaster->email))
+                                    <tr>
+                                        <td class="text-white">
+                                            <i class="bi bi-envelope"></i>
+                                        </td>
+                                        <td class="text-white">
+                                            {{ $linkmaster->email}}
+                                        </td>
+                                    </tr>
+                                    
+                                @endif
+                                @if (!is_null($linkmaster->situs_web))
+                                    <tr>
+                                        <td class="text-white">
+                                            <i class="bi bi-globe"></i>
+                                        </td>
+                                        <td class="text-white">
+                                            {{ $linkmaster->situs_web}}
+                                        </td>
+                                    </tr>
+                                @endif
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <footer class="text-center">
+        Copyright © {{ ambil_tahun()}} Zelnara
+    </footer>
     <script src="{{ asset('template/mazer/assets/extensions/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('template/mazer/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     

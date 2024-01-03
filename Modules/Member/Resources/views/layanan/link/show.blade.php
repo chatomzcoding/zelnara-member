@@ -21,6 +21,56 @@
         <section class="section">
             <div class="card">
                 <div class="card-header">
+                    Informasi Kontak
+                </div>
+                <div class="card-body">
+                    <form action="{{ url('zelnaralink/linkmaster/id')}}" method="post">
+                        @csrf
+                        @method('patch')
+                        <input type="hidden" name="id" value="{{ $linkmaster->id}}">
+                        <input type="hidden" name="s" value="kontak">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-2">
+                                    <label for="">No Telepon</label>
+                                    <input type="text" name="no_telp" value="{{ $linkmaster->no_telp}}" class="form-control" maxlength="20">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="">No Whatsapp</label>
+                                    <input type="text" name="no_wa" value="{{ $linkmaster->no_wa}}" class="form-control" maxlength="20">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="">No Faksimili</label>
+                                    <input type="text" name="no_faks" value="{{ $linkmaster->no_faks}}" class="form-control" maxlength="20">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="">Email</label>
+                                    <input type="email" name="email" value="{{ $linkmaster->email}}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-2">
+                                    <label for="">Jam Kerja</label>
+                                    <input type="text" name="jam_kerja" value="{{ $linkmaster->jam_kerja}}" class="form-control" maxlength="20">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="">Alamat</label>
+                                    <textarea name="alamat" id="" cols="30" rows="5" class="form-control">{{ $linkmaster->alamat}}</textarea>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="">Situs Web</label>
+                                    <input type="text" name="situs_web" value="{{ $linkmaster->situs_web}}" class="form-control">
+                                </div>
+                                <div class="mb-2 text-end">
+                                    <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-save"></i> SIMPAN PERUBAHAN</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card mt-2">
+                <div class="card-header">
                     Button Link
                 </div>
                 <div class="card-body">

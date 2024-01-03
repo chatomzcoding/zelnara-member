@@ -84,26 +84,45 @@ class LinkmasterController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $s = (isset($request->s)) ? $request->s : 'update' ;
         $linkmaster = Linkmaster::find($request->id);
-        $linkmaster->judul = $request->judul;
-        $linkmaster->deskripsi = $request->deskripsi;
-        $linkmaster->tema = $request->tema;
-        $linkmaster->url = $request->url;
+        switch ($s) {
+            case 'kontak':
+                $linkmaster->no_telp = $request->no_telp;
+                $linkmaster->no_wa = $request->no_wa;
+                $linkmaster->email = $request->email;
+                $linkmaster->alamat = $request->alamat;
+                $linkmaster->no_faks = $request->no_faks;
+                $linkmaster->jam_kerja = $request->jam_kerja;
+                $linkmaster->situs_web = $request->situs_web;
+                $linkmaster->save();
+                
+                return back()->with('ts','Kontak Berhasil diperbaharui');
 
-        if (isset($request->gambar)) {
-            $request->validate([
-                'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:3000',
-            ]);
-            $file = $request->file('gambar');
-            $nama_file = time()."_".$file->getClientOriginalName();
-            $tujuan_upload = "img/layanan/link";
-            $file->move($tujuan_upload,$nama_file);
-            $linkmaster->gambar = $nama_file;
+                break;
+            
+            default:
+                $linkmaster->judul = $request->judul;
+                $linkmaster->deskripsi = $request->deskripsi;
+                $linkmaster->tema = $request->tema;
+                $linkmaster->url = $request->url;
+        
+                if (isset($request->gambar)) {
+                    $request->validate([
+                        'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:3000',
+                    ]);
+                    $file = $request->file('gambar');
+                    $nama_file = time()."_".$file->getClientOriginalName();
+                    $tujuan_upload = "img/layanan/link";
+                    $file->move($tujuan_upload,$nama_file);
+                    $linkmaster->gambar = $nama_file;
+                }
+                $linkmaster->save();
+                return back()->with('ts','Link Berhasil diperbaharui');
+                break;
         }
 
-        $linkmaster->save();
 
-        return back()->with('ts','Link Berhasil diperbaharui');
     }
 
     /**
