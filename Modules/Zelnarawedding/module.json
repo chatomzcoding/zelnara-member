@@ -1,0 +1,13 @@
+{
+    "name": "Zelnarawedding",
+    "alias": "zelnarawedding",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Zelnarawedding\\Providers\\ZelnaraweddingServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
