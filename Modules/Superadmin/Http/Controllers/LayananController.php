@@ -13,6 +13,9 @@ class LayananController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+
+    protected $folder = 'img/sistem';
+
     public function index()
     {
         $layanan = Layanan::all();
@@ -47,8 +50,7 @@ class LayananController extends Controller
         ]);
         $file = $request->file('logo');
         $nama_file = time()."_".$file->getClientOriginalName();
-        $tujuan_upload = "img/sistem";
-        $file->move($tujuan_upload,$nama_file);
+        $file->move($this->folder,$nama_file);
         $layanan->logo = $nama_file;
 
         $layanan->save();
@@ -97,8 +99,8 @@ class LayananController extends Controller
             ]);
             $file = $request->file('logo');
             $nama_file = time()."_".$file->getClientOriginalName();
-            $tujuan_upload = "img/sistem";
-            $file->move($tujuan_upload,$nama_file);
+            $file->move($this->folder,$nama_file);
+            deletefile($this->folder.'/'.$layanan->logo);
             $layanan->logo = $nama_file;
         }
 
@@ -113,7 +115,9 @@ class LayananController extends Controller
      */
     public function destroy($id)
     {
-        Layanan::find($id)->delete();
+        $layanan = Layanan::find($id);
+        deletefile($this->folder.'/'.$layanan->logo);
+        $layanan->delete();
         return back()->with('ts','Data Berhasil dihapus');
     }
 }
