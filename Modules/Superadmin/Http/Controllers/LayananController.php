@@ -62,7 +62,8 @@ class LayananController extends Controller
      */
     public function show($id)
     {
-        return view('superadmin::show');
+        $layanan = Layanan::find($id);
+        return view('superadmin::layanan.'.$layanan->kode.'.index', compact('layanan'));
     }
 
     /**

@@ -21,6 +21,7 @@ Route::middleware([
 ])->group(function () {
     Route::prefix('zelnarawedding')->group(function() {
         Route::get('/', 'ZelnaraweddingController@index');
-        Route::get('/template/{kode}', 'ZelnaraweddingController@template');
+
+        Route::resource('weddingtemplate', WeddingtemplateController::class);
     });
 });
