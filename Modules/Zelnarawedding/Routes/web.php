@@ -11,6 +11,16 @@
 |
 */
 
-Route::prefix('zelnarawedding')->group(function() {
-    Route::get('/', 'ZelnaraweddingController@index');
+use Illuminate\Support\Facades\Route;
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'member'
+])->group(function () {
+    Route::prefix('zelnarawedding')->group(function() {
+        Route::get('/', 'ZelnaraweddingController@index');
+        Route::get('/template/{kode}', 'ZelnaraweddingController@template');
+    });
 });

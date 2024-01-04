@@ -15,13 +15,13 @@
     rel="stylesheet">
 
   <!-- simplyCountdown -->
-  <link rel="stylesheet" href="countdown/simplyCountdown.theme.default.css" />
-  <script src="countdown/simplyCountdown.min.js"></script>
+  <link rel="stylesheet" href="{ asset('wedding/wpu/countdown/simplyCountdown.theme.default.css')}}" />
+  <script src="{ asset('wedding/wpu/countdown/simplyCountdown.min.js')}}"></script>
 
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{{ asset('wedding/wpu/style.css')}}">
 </head>
 
 <body>
@@ -85,7 +85,7 @@
               <p>Putra dari Bpk. Lorem <br> dan <br> Ibu Ipsum</p>
             </div>
             <div class="col-4">
-              <img src="img/sandhika.png" alt="Sandhika Galih" class="img-responsive rounded-circle">
+              <img src="{{ asset('wedding/wpu/img/sandhika.png')}}" alt="Sandhika Galih" class="img-responsive rounded-circle">
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@
         <div class="col-lg-6">
           <div class="row">
             <div class="col-4">
-              <img src="img/nofa.png" alt="Nofariza" class="img-responsive rounded-circle">
+              <img src="{{ asset('wedding/wpu/img/nofa.png')}}" alt="Nofariza" class="img-responsive rounded-circle">
             </div>
             <div class="col-8">
               <h3>Nofariza</h3>
@@ -190,7 +190,7 @@
         <div class="col">
           <ul class="timeline">
             <li>
-              <div class="timeline-image" style="background-image: url(img/sman23.jpg);"></div>
+              <div class="timeline-image" style="background-image: url({{ asset('wedding/wpu/img/sman23.jpg')}});"></div>
               <div class="timeline-panel">
                 <div class="timeline-heading">
                   <h3>Pertama Bertemu</h3>
@@ -249,8 +249,8 @@
 
       <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center">
         <div class="col mt-3">
-          <a href="img/gallery/1.png" data-toggle="lightbox" data-caption="Sandhika & Nofa 1" data-gallery="mygallery">
-            <img src="img/gallery/thumbnail/1.png" alt="Sandhika & Nofa 1" class="img-fluid w-100 rounded">
+          <a href="{{ asset('wedding/wpu/img/gallery/1.png')}}" data-toggle="lightbox" data-caption="Sandhika & Nofa 1" data-gallery="mygallery">
+            <img src="{{ asset('wedding/wpu/img/gallery/thumbnail/1.png')}}" alt="Sandhika & Nofa 1" class="img-fluid w-100 rounded">
           </a>
         </div>
         <div class="col mt-3">
@@ -378,7 +378,7 @@
             </li>
             <li class="list-group-item">
               <div class="fw-bold">Saweria</div>
-              <img src="img/saweria.png" alt="Saweria QR" class="img-thumbnail" width="150">
+              <img src="{{ asset('wedding/wpu/img/saweria.png')}}" alt="Saweria QR" class="img-thumbnail" width="150">
             </li>
           </ul>
         </div>
@@ -407,7 +407,7 @@
 
   <div id="audio-container">
     <audio id="song" autoplay loop>
-      <source src="audio/save-and-sound.mp3" type="audio/mp3">
+      <source src="{{ asset('wedding/wpu/audio/save-and-sound.mp3')}}" type="audio/mp3">
     </audio>
 
     <div class="audio-icon-wrapper" style="display: none;">

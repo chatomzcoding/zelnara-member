@@ -17,6 +17,11 @@ class ZelnaraweddingController extends Controller
         return view('zelnarawedding::index');
     }
 
+    public function template($kode)
+    {
+        return view('zelnarawedding::template.'.$kode);
+    }
+
     /**
      * Show the form for creating a new resource.
      * @return Renderable
