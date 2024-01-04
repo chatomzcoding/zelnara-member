@@ -19,7 +19,7 @@
                     </form>
                     @break
                 @case('edit')
-                    <form action="{{ url($link)}}" method="post">
+                    <form action="{{ url($link)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                         <div class="modal-header">
