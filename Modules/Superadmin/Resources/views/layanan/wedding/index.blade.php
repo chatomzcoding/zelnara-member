@@ -58,7 +58,7 @@
                                                     data-id ="{{ $item->id }}">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
-                                                <form action="{{ url('superadmin/layanan/'.$item->id)}}" method="post" class="d-inline">
+                                                <form action="{{ url('zelnarawedding/weddingtemplate/'.$item->id)}}" method="post" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>

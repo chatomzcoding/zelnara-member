@@ -14,6 +14,9 @@ class WeddingtemplateController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+
+    protected $folder = 'img/layanan/wedding';
+
     public function index()
     {
         return view('zelnarawedding::index');
@@ -47,8 +50,7 @@ class WeddingtemplateController extends Controller
         ]);
         $file = $request->file('gambar');
         $nama_file = time()."_".$file->getClientOriginalName();
-        $tujuan_upload = "img/layanan/wedding";
-        $file->move($tujuan_upload,$nama_file);
+        $file->move($this->folder,$nama_file);
         $template->gambar = $nama_file;
 
         $template->save();
@@ -107,8 +109,8 @@ class WeddingtemplateController extends Controller
             ]);
             $file = $request->file('gambar');
             $nama_file = time()."_".$file->getClientOriginalName();
-            $tujuan_upload = "img/layanan/wedding";
-            $file->move($tujuan_upload,$nama_file);
+            $file->move($this->folder,$nama_file);
+            deletefile($this->folder.'/'.$template->gambar);
             $template->gambar = $nama_file;
         }
 
@@ -124,8 +126,9 @@ class WeddingtemplateController extends Controller
      */
     public function destroy($id)
     {
-        Weddingtemplate::find($id)->delete();
-
+        $template =Weddingtemplate::find($id);
+        deletefile($this->folder.'/'.$template->gambar);
+        $template->delete();
         return back()->with('ts','Data Berhasil dihapus');
     }
 }
