@@ -1,5 +1,16 @@
 <?php 
 // CORE --------------------------------------------
+// delete file
+if (! function_exists('deletefile')) {
+    function deletefile($lokasi)
+    {
+        if (!is_dir($lokasi)) {
+            if (file_exists($lokasi)) {
+                unlink($lokasi);
+            }
+        }
+    }
+}
 
 if (! function_exists('rupiah')) {
     function rupiah($angka)
