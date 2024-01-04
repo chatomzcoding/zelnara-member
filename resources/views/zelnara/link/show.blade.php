@@ -30,7 +30,7 @@
             <div class="col-md-8 col-12 offset-md-2">
                 <div class="text-center">
                     <img class="img-logo" src="{{ asset('img/layanan/link/'.$linkmaster->gambar)}}" alt="Logo">
-                    <h1 class="judul text-dark">{{ $linkmaster->judul }}</h1>
+                    <h2 class="judul text-dark mt-2">{{ $linkmaster->judul }}</h2>
                     <p class='fs-5 text-white'>{{ $linkmaster->deskripsi}}</p>
                 </div>
                 <div>
