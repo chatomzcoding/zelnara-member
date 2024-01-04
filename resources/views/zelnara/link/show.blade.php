@@ -31,7 +31,7 @@
                 <div class="text-center">
                     <img class="img-logo" src="{{ asset('img/layanan/link/'.$linkmaster->gambar)}}" alt="Logo">
                     <h2 class="judul text-dark mt-2">{{ $linkmaster->judul }}</h2>
-                    <p class='fs-5 text-white'>{{ $linkmaster->deskripsi}}</p>
+                    <p class='fs-7 text-white'>{{ $linkmaster->deskripsi}}</p>
                 </div>
                 <div>
                     {{--button  --}}
