@@ -13,6 +13,8 @@ class DatapokokController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+    protected $folder = 'img/sistem';
+
     public function index()
     {
         $datapokok = Datapokok::first();
@@ -77,8 +79,8 @@ class DatapokokController extends Controller
             ]);
             $file = $request->file('logo');
             $nama_file = time()."_".$file->getClientOriginalName();
-            $tujuan_upload = "img/sistem";
-            $file->move($tujuan_upload,$nama_file);
+            $file->move($this->folder,$nama_file);
+            deletefile($this->folder.'/'.$datapokok->logo);
             $datapokok->logo = $nama_file;
         }
 
@@ -88,8 +90,8 @@ class DatapokokController extends Controller
             ]);
             $file = $request->file('favicon');
             $nama_file = time()."_".$file->getClientOriginalName();
-            $tujuan_upload = "img/sistem";
-            $file->move($tujuan_upload,$nama_file);
+            $file->move($this->folder,$nama_file);
+            deletefile($this->folder.'/'.$datapokok->favicon);
             $datapokok->favicon = $nama_file;
         }
 
