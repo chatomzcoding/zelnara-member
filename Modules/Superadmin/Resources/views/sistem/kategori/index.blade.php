@@ -11,6 +11,23 @@
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#tambah"><i class="bi bi-plus-circle"></i> TAMBAH</button>
                 </div>
                 <div class="card-body">
+                    <section>
+                        <form action="" method="get">
+                            <input type="hidden" name="s" value="label">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <select name="label" id="" class="form-select" onchange="this.form.submit()" required>
+                                        <option value="semua">-- SEMUA --</option>
+                                        @foreach (data_label() as $item)
+                                            <option value="{{ $item}}" @if ($label == $item)
+                                                selected
+                                            @endif>{{ $item}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
                     <div class="table-responsive mt-3">
                         <table class="table">
                             <thead class="text-center">

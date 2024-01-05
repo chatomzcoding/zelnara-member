@@ -15,8 +15,12 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::all();
-        return view('superadmin::sistem.kategori.index', compact('kategori'));
+        $kategori = Kategori::orderBy('nama','ASC')->get();
+        $label = (isset($_GET['label'])) ? $_GET['label'] : 'semua' ;
+        if ($label <> 'semua') {
+            $kategori = Kategori::where('label',$label)->orderBy('nama','ASC')->get();
+        }
+        return view('superadmin::sistem.kategori.index', compact('kategori','label'));
     }
 
     /**
