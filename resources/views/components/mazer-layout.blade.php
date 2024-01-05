@@ -15,8 +15,8 @@
 
     <link rel="stylesheet" href="{{ asset('template/mazer/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}">
     <link rel="stylesheet" href="{{ asset('template/mazer/assets/compiled/css/table-datatable-jquery.css')}}">
-    <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.css')}}" />
-
+    <link rel="stylesheet" href="{{ asset('template/mazer/assets/extensions/sweetalert2/sweetalert2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('template/mazer/assets/extensions/toastify-js/src/toastify.css')}}">
 
 </head>
 
@@ -97,7 +97,10 @@
         <script src="{{ asset('template/mazer/assets/extensions/jquery/jquery.min.js')}}"></script>
         <script src="{{ asset('template/mazer/assets/extensions/datatables.net/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{ asset('template/mazer/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
-    <script src="{{ asset('vendor/toastr/toastr.js')}}"></script>
+        <script src="{{ asset('template/mazer/assets/extensions/sweetalert2/sweetalert2.min.js')}}"></script>>
+        <script src="{{ asset('template/mazer/assets/extensions/toastify-js/src/toastify.js')}}"></script>
+
+        <script src="{{ asset('js/chatomz.js')}}"></script>
 
 
         <script>
@@ -105,40 +108,25 @@
                 responsive: true
             });
             @if(Session::has('ts'))
-      toastr.options =
-      {
-        "closeButton" : true,
-        "progressBar" : true
-      }
-          toastr.success("{{ session('ts') }}");
-      @endif
-
-      @if(Session::has('te'))
-      toastr.options =
-      {
-        "closeButton" : true,
-        "progressBar" : true
-      }
-          toastr.error("{{ session('te') }}");
-      @endif
-
-      @if(Session::has('ti'))
-      toastr.options =
-      {
-        "closeButton" : true,
-        "progressBar" : true
-      }
-          toastr.info("{{ session('ti') }}");
-      @endif
-
-      @if(Session::has('tw'))
-      toastr.options =
-      {
-        "closeButton" : true,
-        "progressBar" : true
-      }
-          toastr.warning("{{ session('tw') }}");
-      @endif
+                Toastify({
+                    text: "{{ Session('ts') }}",
+                    duration: 3000,
+                    close: true,
+                    style: {
+                        background: "#4fbe87",
+                    }
+                }).showToast()
+            @endif
+            @if(Session::has('te'))
+                Toastify({
+                    text: "{{ Session('te') }}",
+                    duration: 3000,
+                    close: true,
+                    style: {
+                        background: "#ff0808",
+                    }
+                }).showToast()
+            @endif
         </script>
     {{ $kodejs ?? ''}}
 </body>
