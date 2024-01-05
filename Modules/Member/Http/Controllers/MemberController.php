@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Superadmin\Entities\Kategori;
 use Modules\Superadmin\Entities\Layanan;
 use Modules\Superadmin\Entities\Member;
+use Modules\Zelnarawedding\Entities\Weddingtemplate;
 
 class MemberController extends Controller
 {
@@ -41,6 +42,10 @@ class MemberController extends Controller
                     break;
                 case 'qodex':
                     return view('member::layanan.qodex.index', compact('user','layanan'));
+                    break;
+                case 'wedding':
+                    $template = Weddingtemplate::all();
+                    return view('member::layanan.wedding.index', compact('user','layanan','template'));
                     break;
                 
                 default:
