@@ -25,6 +25,9 @@
     {{-- <script src="assets/static/js/initTheme.js"></script> --}}
     <div id="error">
         <div class="error-page container">
+            <header class="text-end">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#term">Syarat & Ketentuan Penggunaan Zelnara Voting</a>
+            </header>
             <div class="col-md-8 col-12 offset-md-2">
                 <div class="text-center">
                     <img class="img-logo" src="{{ asset('img/layanan/voting/'.$voting->gambar)}}" alt="Logo">
@@ -68,6 +71,126 @@
             </div>
         </div>
     </div>
+
+       <!--scrolling content Modal -->
+       <div class="modal fade" id="term" tabindex="-1" role="dialog"
+       aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-scrollable" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="exampleModalScrollableTitle">Syarat dan Ketentuan</h5>
+                   <button type="button" class="close" data-bs-dismiss="modal"
+                       aria-label="Close">
+                       <i data-feather="x"></i>
+                   </button>
+               </div>
+               <div class="modal-body">
+                <strong>
+                    PENGANTAR
+                </strong>
+                <br>
+                Aplikasi voting ini disediakan sebagai sarana hiburan untuk pengguna. Harap dibaca dengan seksama syarat dan ketentuan ini sebelum menggunakan aplikasi.
+                <br>
+                <strong>
+                    
+                    SYARAT DAN KETENTUAN
+                </strong>
+                <br>
+                <ol>
+                    <li>
+                        Partisipasi:
+                        <ul>
+                            <li>
+                                Siapapun yang memiliki link ini dapat berpartisipasi dalam voting.
+                            </li>
+                            <li>
+                                Setiap pengguna diperbolehkan memberikan lebih dari satu vote untuk setiap pilihan yang tersedia.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Batasan Waktu:
+                        <ul>
+                            <li>
+                                Setiap sesi voting akan memiliki batasan waktu yang ditentukan. Setelah waktu tersebut berakhir, voting akan ditutup.
+                            </li>
+                            <li>
+                                Pengguna diberikan hak untuk memberikan suara selama periode waktu voting yang telah ditentukan.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Batasan Jumlah Vote:
+                        <ul>
+                            <li>
+                                Meskipun setiap pengguna diperbolehkan memberikan lebih dari satu vote, akan ada batasan jumlah maksimum vote yang dapat diberikan oleh satu pengguna untuk setiap pilihan.
+                            </li>
+                            <li>
+                                Batasan vote dihitung dari frekuensi vote yang tidak wajar dalam waktu singkat, hal ini mencegah vote yang tidak normal seperti penggunaan bot, serangan DDOS dan lain sebagainya.
+                            </li>
+                            <li>
+                                Apabila pengguna mendapatkan peringatan batasan vote, pengguna dapat memberikan vote dalam beberapa menit selanjutnya
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Keterbukaan Hasil:
+                        <ul>
+                            <li>
+                                Hasil dari voting bersifat hiburan dan tidak memiliki dampak resmi atau keputusan tertentu.
+                            </li>
+                            <li>
+                                Hasil tidak akan menjadi acuan utama atau digunakan sebagai dasar untuk keputusan apapun.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Pengaturan Hak Kekayaan Intelektual:
+                        <ul>
+                            <li>
+                                Aplikasi ini memiliki hak kekayaan intelektual. Seluruh konten, termasuk namun tidak terbatas pada pilihan dan hasil voting, merupakan milik dari pemilik aplikasi.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Perubahan Syarat dan Ketentuan:
+                        <ul>
+                            <li>
+                                Pemilik aplikasi berhak untuk mengubah syarat dan ketentuan ini tanpa pemberitahuan sebelumnya. Perubahan tersebut akan berlaku sejak tanggal diumumkan.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Penutupan Aplikasi:
+                        <ul>
+                            <li>
+                                Pemilik aplikasi berhak untuk menutup aplikasi ini tanpa pemberitahuan sebelumnya.
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+                <strong>
+                    PENUTUP
+                </strong>
+                <br>
+                Dengan menggunakan aplikasi ini, pengguna dianggap telah membaca, memahami, dan menyetujui semua syarat dan ketentuan yang tercantum di atas. Syarat dan ketentuan ini dapat diubah sewaktu-waktu oleh pemilik aplikasi. Jika Anda tidak setuju dengan syarat dan ketentuan ini, mohon untuk tidak menggunakan aplikasi ini.
+                <br>
+                Terima kasih atas partisipasi Anda!
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-light-secondary"
+                       data-bs-dismiss="modal">
+                       <i class="bx bx-x d-block d-sm-none"></i>
+                       <span class="d-none d-sm-block">TUTUP</span>
+                   </button>
+                   <button type="button" class="btn btn-success ms-1" data-bs-dismiss="modal">
+                       <i class="bx bx-check d-block d-sm-none"></i>
+                       <span class="d-none d-sm-block">SAYA MENGERTI</span>
+                   </button>
+               </div>
+           </div>
+       </div>
+   </div>
     <footer class="text-center">
         Copyright © {{ ambil_tahun()}} Zelnara
     </footer>
