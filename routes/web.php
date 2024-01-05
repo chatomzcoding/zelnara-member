@@ -21,17 +21,26 @@ Route::domain('https://link.zelnara.com')->group(function () {
     Route::get('/', [HomepageController::class,'link']);
     Route::get('/{url}', [HomepageController::class,'linkurl']);
 });
+Route::domain('https://voting.zelnara.com')->group(function () {
+    Route::get('/login', function () {
+        return redirect('/');
+    });
+    Route::get('/', [HomepageController::class,'voting']);
+    Route::get('/{url}', [HomepageController::class,'votingshow']);
+});
 
 Route::domain('https://member.zelnara.com')->group(function () {
     Route::get('/', [HomepageController::class,'index']);
 });
 
+// Route::get('/', [HomepageController::class,'index']);
+
 // PAGE REDIRECT
 Route::get('/page/{page}', [HomepageController::class,'page']);
 
 // PENGUJIAN
-Route::get('/dev/{url}', [HomepageController::class,'linkurl']);
-
+Route::get('/dev/link/{url}', [HomepageController::class,'linkurl']);
+Route::get('/dev/voting/{url}', [HomepageController::class,'votingshow']);
 
 Route::middleware([
     'auth:sanctum',

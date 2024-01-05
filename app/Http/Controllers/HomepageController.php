@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Modules\Layanan\Entities\Voting;
+use Modules\Layanan\Entities\Votingpilihan;
 use Modules\Superadmin\Entities\Datapokok;
 use Modules\Zelnaralink\Entities\Linkmaster;
 use Modules\Zelnaralink\Entities\Linkmasterbutton;
@@ -41,6 +43,21 @@ class HomepageController extends Controller
         return view('zelnara.link.show',compact('linkmaster'));
     }
 
+    // ZELNARA VOTING
+    
+    function voting(){
+        return view('zelnara.voting.index');
+    }
+    function votingshow($url){
+        $voting = Voting::where('link',$url)->first();
+        if (!$voting) {
+            return redirect('/page/404');
+        }
+        // $voting->view = $voting->view + 1;
+        // $voting->save();
+        return view('zelnara.voting.show',compact('voting'));
+    }
+
     // AJAX
     function ajax(){
         $s = (isset($_GET['s'])) ? Crypt::decryptString($_GET['s']) : NULL ;
@@ -52,6 +69,26 @@ class HomepageController extends Controller
                     $linkmasterbutton->jumlah_klik = $linkmasterbutton->jumlah_klik + 1;
                     $linkmasterbutton->save();
                 }
+                break;
+            case 'vote_pilihan':
+                $status = FALSE;
+                $jumlah = NULL;
+                $id = (isset($_GET['id'])) ? Crypt::decryptString($_GET['id']) : NULL ;
+                $pilihan = Votingpilihan::find($id);
+                if ($pilihan) {
+                    $pilihan->jumlah = $pilihan->jumlah + 1;
+                    $pilihan->save();
+
+                    $jumlah = $pilihan->jumlah;
+
+                    $status = TRUE;
+                }
+                $result = [
+                    'id' => $id,
+                    'status' => $status,
+                    'jumlah' => $jumlah
+                ];
+                return $result;
                 break;
             
             default:
