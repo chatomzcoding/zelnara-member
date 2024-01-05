@@ -15,11 +15,6 @@ class LayananqodexController extends Controller
      */
     public function index()
     {
-        // QrCode::format('png')->size(200)->merge('/public/img/pisang.jpg')->generate('https://djuraganindonesia.com', '../public/img/'.time().'.png');
-
-        // echo QrCode::merge('../public/img/pisang.jpg')->generate('hallo');
-        // echo QrCode::generate('hallo');
-        // echo QrCode::format('png')->generate('hallo');
         return view('member::index');
     }
 
