@@ -85,7 +85,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($linkmaster->linkmasterbutton as $item)
+                                    @forelse ($linkmaster->linkmasterbutton()->orderBy('urutan','ASC')->get() as $item)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{!! $item->icon !!}</td>
