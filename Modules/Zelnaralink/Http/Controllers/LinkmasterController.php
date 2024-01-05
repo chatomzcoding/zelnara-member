@@ -13,6 +13,9 @@ class LinkmasterController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+
+    protected $folder = 'img/layanan/link';
+
     public function index()
     {
         return view('zelnaralink::index');
@@ -52,8 +55,7 @@ class LinkmasterController extends Controller
         ]);
         $file = $request->file('gambar');
         $nama_file = time()."_".$file->getClientOriginalName();
-        $tujuan_upload = "img/layanan/link";
-        $file->move($tujuan_upload,$nama_file);
+        $file->move($this->folder,$nama_file);
         $linkmaster->gambar = $nama_file;
 
         $linkmaster->save();
@@ -118,8 +120,8 @@ class LinkmasterController extends Controller
                     ]);
                     $file = $request->file('gambar');
                     $nama_file = time()."_".$file->getClientOriginalName();
-                    $tujuan_upload = "img/layanan/link";
-                    $file->move($tujuan_upload,$nama_file);
+                    $file->move($this->folder,$nama_file);
+                    deletefile($this->folder.'/'.$linkmaster->gambar);
                     $linkmaster->gambar = $nama_file;
                 }
                 $linkmaster->save();
@@ -137,7 +139,9 @@ class LinkmasterController extends Controller
      */
     public function destroy($id)
     {
-        Linkmaster::find($id)->delete();
+        $linkmaster = Linkmaster::find($id);
+        deletefile($this->folder.'/'.$linkmaster->gambar);
+        $linkmaster->delete();
         
         return back()->with('ts','Link Berhasil dihapus');
     }

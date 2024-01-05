@@ -13,6 +13,8 @@ class LinkmasterkatalogController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+    protected $folder = 'img/layanan/link';
+
     public function index()
     {
         return view('zelnaralink::index');
@@ -46,8 +48,7 @@ class LinkmasterkatalogController extends Controller
         ]);
         $file = $request->file('gambar');
         $nama_file = time()."_".$file->getClientOriginalName();
-        $tujuan_upload = "img/layanan/link";
-        $file->move($tujuan_upload,$nama_file);
+        $file->move($this->folder,$nama_file);
         $katalog->gambar = $nama_file;
 
         $katalog->save();
@@ -95,8 +96,8 @@ class LinkmasterkatalogController extends Controller
             ]);
             $file = $request->file('gambar');
             $nama_file = time()."_".$file->getClientOriginalName();
-            $tujuan_upload = "img/layanan/link";
-            $file->move($tujuan_upload,$nama_file);
+            $file->move($this->folder,$nama_file);
+            deletefile($this->folder.'/'.$katalog->gambar);
             $katalog->gambar = $nama_file;
         }
 
@@ -112,7 +113,9 @@ class LinkmasterkatalogController extends Controller
      */
     public function destroy($id)
     {
-        Linkmasterkatalog::find($id)->delete();
+        $katalog = Linkmasterkatalog::find($id);
+        deletefile($this->folder.'/'.$katalog->gambar);
+        $katalog->delete();
         return back()->with('ts','Data Katalog berhasil dihapus');
     }
 }
