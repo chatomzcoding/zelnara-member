@@ -22,4 +22,8 @@ class Voting extends Model
     function member(){
         return $this->belongsTo(Member::class);
     }
+
+    function votingpilihan(){
+        return $this->hasMany(Votingpilihan::class);
+    }
 }

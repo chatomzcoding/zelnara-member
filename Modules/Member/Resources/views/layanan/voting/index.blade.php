@@ -32,6 +32,7 @@
                                         <th width="5%">No</th>
                                         <th>Gambar</th>
                                         <th>Nama</th>
+                                        <th>Link</th>
                                         <th>Tanggal</th>
                                         <th>Keterangan</th>
                                         <th>Sistem</th>
@@ -49,6 +50,7 @@
                                                 @endif
                                             </td>
                                             <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->link }}</td>
                                             <td>{{ date_indo($item->tanggal_mulai).' - '.date_indo($item->tanggal_akhir) }}</td>
                                             <td>
                                                 {{ $item->keterangan }}
@@ -61,11 +63,13 @@
                                             </td>
                                             <td class="text-center">
                                                 <x-aksi :id="$item->id" link="layanan/voting">
+                                                    <a href="{{ url('member/layananvoting/'.Crypt::encryptString($item->id))}}" class="btn btn-primary btn-sm"><i class="bi bi-file-text"></i></a>
                                                     <button
                                                         class="btn btn-success btn-sm btn-icon"
                                                         data-bs-target="#edit"
                                                         data-bs-toggle="modal"
                                                         data-nama = "{{ $item->nama }}"
+                                                        data-link = "{{ $item->link }}"
                                                         data-keterangan = "{{ $item->keterangan }}"
                                                         data-tanggal_mulai = "{{ $item->tanggal_mulai }}"
                                                         data-tanggal_akhir = "{{ $item->tanggal_akhir }}"
@@ -96,6 +100,10 @@
         <div class="mb-2">
             <label for="">Nama Voting</label>
             <input type="text" name="nama" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Link Voting</label>
+            <input type="text" name="link" class="form-control" required>
         </div>
         <div class="mb-2">
             <label for="">Keterangan</label>
@@ -136,6 +144,10 @@
             <input type="text" name="nama" id="nama" class="form-control" required>
         </div>
         <div class="mb-2">
+            <label for="">Link Voting</label>
+            <input type="text" name="link" id="link" class="form-control" required>
+        </div>
+        <div class="mb-2">
             <label for="">Keterangan</label>
             <input type="text" name="keterangan" id="keterangan" class="form-control">
         </div>
@@ -173,6 +185,7 @@
             $('#edit').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget)
                 var nama = button.data('nama')
+                var link = button.data('link')
                 var keterangan = button.data('keterangan')
                 var tanggal_akhir = button.data('tanggal_akhir')
                 var status = button.data('status')
@@ -183,6 +196,7 @@
                 var modal = $(this)
         
                 modal.find('.modal-body #nama').val(nama);
+                modal.find('.modal-body #link').val(link);
                 modal.find('.modal-body #keterangan').val(keterangan);
                 modal.find('.modal-body #tanggal_akhir').val(tanggal_akhir);
                 modal.find('.modal-body #status').val(status);

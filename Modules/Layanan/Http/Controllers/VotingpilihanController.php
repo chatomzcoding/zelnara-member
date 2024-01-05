@@ -5,14 +5,15 @@ namespace Modules\Layanan\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Layanan\Entities\Voting;
+use Modules\Layanan\Entities\Votingpilihan;
 
-class VotingController extends Controller
+class VotingpilihanController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
+
     protected $folder = "img/layanan/voting";
 
     public function index()
@@ -36,28 +37,23 @@ class VotingController extends Controller
      */
     public function store(Request $request)
     {
-        $voting = New Voting;
-        $voting->layanan_id = $request->layanan_id;
-        $voting->member_id = $request->member_id;
-        $voting->nama = $request->nama;
-        $voting->link = $request->link;
-        $voting->status = $request->status;
-        $voting->tanggal_mulai = $request->tanggal_mulai;
-        $voting->tanggal_akhir = $request->tanggal_akhir;
-        $voting->sistem = $request->sistem;
-        $voting->keterangan = $request->keterangan;
-
+        $votingpilihan = New Votingpilihan;
+        $votingpilihan->voting_id = $request->voting_id;
+        $votingpilihan->nama = $request->nama;
+        $votingpilihan->urutan = $request->urutan;
+        $votingpilihan->jumlah = $request->jumlah;
+        $votingpilihan->keterangan = $request->keterangan;
         $request->validate([
             'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:3000',
         ]);
         $file = $request->file('gambar');
         $nama_file = time()."_".$file->getClientOriginalName();
         $file->move($this->folder,$nama_file);
-        $voting->gambar = $nama_file;
+        $votingpilihan->gambar = $nama_file;
 
-        $voting->save();
+        $votingpilihan->save();
 
-        return back()->with('ts','Voting berhasil ditambahkan');
+        return back()->with('ts','Voting Pilihan berhasil ditambahkan');
     }
 
     /**
@@ -88,14 +84,10 @@ class VotingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $voting = Voting::find($request->id);
-        $voting->nama = $request->nama;
-        $voting->link = $request->link;
-        $voting->status = $request->status;
-        $voting->tanggal_mulai = $request->tanggal_mulai;
-        $voting->tanggal_akhir = $request->tanggal_akhir;
-        $voting->sistem = $request->sistem;
-        $voting->keterangan = $request->keterangan;
+        $votingpilihan = Votingpilihan::find($request->id);
+        $votingpilihan->nama = $request->nama;
+        $votingpilihan->urutan = $request->urutan;
+        $votingpilihan->keterangan = $request->keterangan;
 
         if (isset($request->gambar)) {
             $request->validate([
@@ -104,13 +96,13 @@ class VotingController extends Controller
             $file = $request->file('gambar');
             $nama_file = time()."_".$file->getClientOriginalName();
             $file->move($this->folder,$nama_file);
-            deletefile($this->folder.'/'.$voting->gambar);
-            $voting->gambar = $nama_file;
+            deletefile($this->folder.'/'.$votingpilihan->gambar);
+            $votingpilihan->gambar = $nama_file;
         }
 
-        $voting->save();
+        $votingpilihan->save();
 
-        return back()->with('ts','Voting berhasil diperbaharui');
+        return back()->with('ts','Voting Pilihan berhasil diperbaharui');
     }
 
     /**
@@ -120,10 +112,10 @@ class VotingController extends Controller
      */
     public function destroy($id)
     {
-        $voting = Voting::find($id);
-        deletefile($this->folder.'/'.$voting->gambar);
-        $voting->delete();
-        
-        return back()->with('te','Voting berhasil dihapus');
+        $votingpilihan = Votingpilihan::find($id);
+        deletefile($this->folder.'/'.$votingpilihan->gambar);
+        $votingpilihan->delete();
+
+        return back()->with('ts','Voting Pilihan berhasil dihapus');
     }
 }

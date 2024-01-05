@@ -27,6 +27,6 @@ Route::middleware([
 
         // LAYANAN
         Route::resource('layananlink',LayananlinkController::class);
-        Route::resource('layananqodex',LayananqodexController::class);
+        Route::resource('layananvoting',LayananvotingController::class);
     });
 });

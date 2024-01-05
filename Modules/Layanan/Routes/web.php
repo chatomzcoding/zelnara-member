@@ -27,5 +27,6 @@ Route::middleware([
 
         // LAYANAN VOTING
         Route::resource('voting', VotingController::class);
+        Route::resource('votingpilihan', VotingpilihanController::class);
     });
 });

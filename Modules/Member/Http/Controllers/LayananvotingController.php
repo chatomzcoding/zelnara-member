@@ -5,9 +5,10 @@ namespace Modules\Member\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Crypt;
+use Modules\Layanan\Entities\Voting;
 
-class LayananqodexController extends Controller
+class LayananvotingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,7 +45,9 @@ class LayananqodexController extends Controller
      */
     public function show($id)
     {
-        return view('member::show');
+        $voting = Voting::find(Crypt::decryptString($id));
+        $layanan = $voting->layanan;
+        return view('member::layanan.voting.show', compact('voting','layanan'));
     }
 
     /**
