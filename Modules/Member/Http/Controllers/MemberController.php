@@ -43,6 +43,9 @@ class MemberController extends Controller
                 case 'qodex':
                     return view('member::layanan.qodex.index', compact('user','layanan'));
                     break;
+                case 'voting':
+                    return view('member::layanan.voting.index', compact('user','layanan'));
+                    break;
                 case 'wedding':
                     $template = Weddingtemplate::all();
                     return view('member::layanan.wedding.index', compact('user','layanan','template'));

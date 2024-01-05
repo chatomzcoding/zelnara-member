@@ -22,6 +22,10 @@ Route::middleware([
     Route::prefix('layanan')->group(function() {
         Route::get('/', 'LayananController@index');
 
+        // LAYANAN QODEX
         Route::resource('qodexmaster', QodexmasterController::class);
+
+        // LAYANAN VOTING
+        Route::resource('voting', VotingController::class);
     });
 });
