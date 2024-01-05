@@ -10,6 +10,9 @@
     <link rel="shortcut icon" href="{{ asset('img/favicon-zelnara-voting.png')}}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('template/mazer/assets/compiled/css/app.css')}}">
   <link rel="stylesheet" href="{{ asset('template/mazer/assets/compiled/css/error.css')}}">
+
+<link rel="stylesheet" href="{{ asset('template/mazer/assets/extensions/sweetalert2/sweetalert2.min.css')}}">
+
   <style>
     .img-logo {
         width: 100px;
@@ -60,7 +63,16 @@
     
     <script src="{{ asset('template/mazer/assets/compiled/js/app.js')}}"></script>
 
+<script src="{{ asset('template/mazer/assets/extensions/sweetalert2/sweetalert2.min.js')}}"></script>>
+
+
     <script>
+        const Swal2 = Swal.mixin({
+            customClass: {
+                input: 'form-control'
+            }
+        });
+
         $(document).ready(function () {
             $('.btn-vote').on('click', function () {
                 let id = $(this).data('id');
@@ -74,7 +86,12 @@
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     if (jqXHR.status === 429) {
                         // Tangani kasus ketika terlalu banyak permintaan
-                        alert('Terlalu banyak permintaan! Silakan coba lagi nanti.');
+                        Swal2.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Terlalu Bersemangat Memberikan Voting hihi!",
+                            footer: "Kami membatasi terlalu banyak vote (mencegah bot,DDOS, dkk), silahkan vote dengan normal dan coba lagi nanti! Terima Kasih",
+                        });
                     } else {
                         // Tangani kesalahan lainnya
                         console.error('Error:', textStatus, errorThrown);
@@ -82,6 +99,8 @@
                 });
             });
         });
+
+
     </script>
 </body>
 
