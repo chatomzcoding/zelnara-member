@@ -29,7 +29,15 @@
                 <div class="text-center">
                     <img class="img-logo" src="{{ asset('img/layanan/voting/'.$voting->gambar)}}" alt="Logo">
                     <h2 class="judul text-dark mt-2">{{ $voting->nama }}</h2>
-                    <p class='fs-7 text-white'>{{ $voting->keterangan}}</p>
+                    <p class='fs-7 text-dark'>{{ $voting->keterangan}}</p>
+                    @if (!$voting->statusTanggal())
+                        <div class="alert alert-info text-center p-2">
+                            Vote akan dibuka pada Tanggal <br>
+                            <strong class="fs-4">
+                                {{ $voting->getTanggal()}}
+                            </strong>
+                        </div>
+                    @endif
                 </div>
                 <div class="row">
                     @forelse ($voting->votingpilihan as $item)
@@ -38,10 +46,15 @@
                                 <div class="card-content p-2">
                                     <img class="card-img-top img-fluid" src="{{ asset('img/layanan/voting/'.$item->gambar)}}" alt="Card image cap"/>
                                     <div class="card-body">
-                                        <h3 class="text-center" id="vote-{{ $item->id}}">{{ $item->jumlah }}</h3>
+                                        @if ($voting->statusTanggal())
+                                            <h3 class="text-center" id="vote-{{ $item->id}}">{{ $item->jumlah }}</h3>
+                                        @endif
+
                                         <h6 class="card-title text-center">{{ $item->nama }}</h6>
-                                        <button class="btn btn-primary btn-block btn-vote" data-id="{{ Crypt::encryptString($item->id)}}" data-s="{{ Crypt::encryptString('vote_pilihan')}}">VOTE</button>
-                                        <p class="card-text text-muted mt-3">
+                                        @if ($voting->statusTanggal())
+                                            <button class="btn btn-primary btn-block btn-vote" data-id="{{ Crypt::encryptString($item->id)}}" data-s="{{ Crypt::encryptString('vote_pilihan')}}">VOTE</button>
+                                        @endif
+                                        <p class="card-text text-dark mt-3">
                                            {{ $item->keterangan}}
                                         </p>
                                     </div>

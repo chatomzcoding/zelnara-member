@@ -15,6 +15,20 @@ class Voting extends Model
 
     protected $guarded = [];
 
+    function getTanggal(){
+        $tanggal = date_indo($this->tanggal_mulai).' - '.date_indo($this->tanggal_akhir);
+        return $tanggal;
+    }
+
+    function statusTanggal(){
+        $status = FALSE;
+        $tanggalmulai = strtotime($this->tanggal_mulai);
+        if (time() >= $tanggalmulai) {
+            $status = TRUE;
+        }
+        return $status;
+    }
+
     function layanan(){
         return $this->belongsTo(Layanan::class);
     }
