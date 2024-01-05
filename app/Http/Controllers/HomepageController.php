@@ -71,24 +71,15 @@ class HomepageController extends Controller
                 }
                 break;
             case 'vote_pilihan':
-                $status = FALSE;
                 $jumlah = NULL;
                 $id = (isset($_GET['id'])) ? Crypt::decryptString($_GET['id']) : NULL ;
                 $pilihan = Votingpilihan::find($id);
                 if ($pilihan) {
                     $pilihan->jumlah = $pilihan->jumlah + 1;
                     $pilihan->save();
-
-                    $jumlah = $pilihan->jumlah;
-
-                    $status = TRUE;
                 }
-                $result = [
-                    'id' => $id,
-                    'status' => $status,
-                    'jumlah' => $jumlah
-                ];
-                return $result;
+                $voting = Votingpilihan::select('id','jumlah')->where('voting_id',$pilihan->voting_id)->get();
+                return $voting;
                 break;
             
             default:

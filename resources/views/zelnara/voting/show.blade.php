@@ -35,7 +35,7 @@
                                 <div class="card-content p-2">
                                     <img class="card-img-top img-fluid" src="{{ asset('img/layanan/voting/'.$item->gambar)}}" alt="Card image cap"/>
                                     <div class="card-body">
-                                        <h3 class="text-center vote" id="vote-{{ $item->id}}">{{ $item->jumlah }}</h3>
+                                        <h3 class="text-center" id="vote-{{ $item->id}}">{{ $item->jumlah }}</h3>
                                         <h6 class="card-title text-center">{{ $item->nama }}</h6>
                                         <button class="btn btn-primary btn-block btn-vote" data-id="{{ Crypt::encryptString($item->id)}}" data-s="{{ Crypt::encryptString('vote_pilihan')}}">VOTE</button>
                                         <p class="card-text text-muted mt-3">
@@ -67,9 +67,9 @@
                 let s = $(this).data('s');
                 
                 $.get("{{ url('api/ajax')}}", {'id':id,'s':s}, function (response) {
-                    if (response.status) {
-                        $("#vote-" + response.id).text(response.jumlah);
-                    }
+                    $.each(response, function (index,item) {
+                       $("#vote-" + item.id).text(item.jumlah); 
+                    });
                 });
             });
         });
