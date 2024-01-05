@@ -17,4 +17,8 @@ class Weddingtemplate extends Model
     function layanan(){
         return $this->belongsTo(Layanan::class);
     }
+
+    function wedding(){
+        return $this->hasMany(Wedding::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace Modules\Zelnarawedding\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Zelnarawedding\Entities\Wedding;
 
 class WeddingController extends Controller
 {
@@ -12,6 +13,9 @@ class WeddingController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+
+    protected $folder = 'img/layanan/wedding';
+
     public function index()
     {
         return view('zelnarawedding::index');
@@ -33,7 +37,27 @@ class WeddingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $wedding = New Wedding;
+        $wedding->member_id = $request->member_id;
+        $wedding->layanan_id = $request->layanan_id;
+        $wedding->weddingtemplate_id = $request->weddingtemplate_id;
+        $wedding->tempat_pernikahan = $request->tempat_pernikahan;
+        $wedding->alamat_pernikahan = $request->alamat_pernikahan;
+        $wedding->tanggal_pernikahan = $request->tanggal_pernikahan;
+
+        if (isset($request->photo)) {
+            $request->validate([
+                'photo' => 'required|file|image|mimes:jpeg,png,jpg|max:5000',
+            ]);
+            $file = $request->file('photo');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move($this->folder,$nama_file);
+            $wedding->photo = $nama_file;
+        }
+
+        $wedding->save();
+
+        return back()->with('ts','Data Berhasil ditambahkan');
     }
 
     /**
@@ -64,7 +88,25 @@ class WeddingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $wedding = Wedding::find($request->id);
+        $wedding->tempat_pernikahan = $request->tempat_pernikahan;
+        $wedding->alamat_pernikahan = $request->alamat_pernikahan;
+        $wedding->tanggal_pernikahan = $request->tanggal_pernikahan;
+
+        if (isset($request->photo)) {
+            $request->validate([
+                'photo' => 'required|file|image|mimes:jpeg,png,jpg|max:5000',
+            ]);
+            $file = $request->file('photo');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move($this->folder,$nama_file);
+            deletefile($this->folder.'/'.$wedding->photo);
+            $wedding->photo = $nama_file;
+        }
+
+        $wedding->save();
+
+        return back()->with('ts','Data Berhasil diperbaharui');
     }
 
     /**
@@ -74,6 +116,10 @@ class WeddingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $wedding = Wedding::find($id);
+        deletefile($this->folder.'/'.$wedding->photo);
+        $wedding->delete();
+
+        return back()->with('ts','Data Berhasil dihapus');
     }
 }

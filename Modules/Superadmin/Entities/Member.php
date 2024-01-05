@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Layanan\Entities\Qodexmaster;
 use Modules\Zelnaralink\Entities\Linkmaster;
+use Modules\Zelnarawedding\Entities\Wedding;
 
 class Member extends Model
 {
@@ -26,5 +27,9 @@ class Member extends Model
 
     function qodexmaster(){
         return $this->hasMany(Qodexmaster::class);
+    }
+
+    function wedding(){
+        return $this->hasMany(Wedding::class);
     }
 }
