@@ -70,6 +70,15 @@
                     $.each(response, function (index,item) {
                        $("#vote-" + item.id).text(item.jumlah); 
                     });
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status === 429) {
+                        // Tangani kasus ketika terlalu banyak permintaan
+                        alert('Terlalu banyak permintaan! Silakan coba lagi nanti.');
+                    } else {
+                        // Tangani kesalahan lainnya
+                        console.error('Error:', textStatus, errorThrown);
+                    }
                 });
             });
         });
