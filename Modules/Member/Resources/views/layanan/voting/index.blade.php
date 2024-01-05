@@ -50,7 +50,9 @@
                                                 @endif
                                             </td>
                                             <td>{{ $item->nama }}</td>
-                                            <td>{{ $item->link }}</td>
+                                            <td>
+                                                <a href="https://voting.zelnara.com/{{ $item->link}}" target="_blank">{{ $item->link}}</a>
+                                            </td>
                                             <td>{{ date_indo($item->tanggal_mulai).' - '.date_indo($item->tanggal_akhir) }}</td>
                                             <td>
                                                 {{ $item->keterangan }}

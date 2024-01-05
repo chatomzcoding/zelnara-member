@@ -36,7 +36,7 @@
                                     <img class="card-img-top img-fluid" src="{{ asset('img/layanan/voting/'.$item->gambar)}}" alt="Card image cap"/>
                                     <div class="card-body">
                                         <h3 class="text-center vote" id="vote-{{ $item->id}}">{{ $item->jumlah }}</h3>
-                                        <h4 class="card-title text-center">{{ $item->nama }}</h4>
+                                        <h6 class="card-title text-center">{{ $item->nama }}</h6>
                                         <button class="btn btn-primary btn-block btn-vote" data-id="{{ Crypt::encryptString($item->id)}}" data-s="{{ Crypt::encryptString('vote_pilihan')}}">VOTE</button>
                                         <p class="card-text text-muted mt-3">
                                            {{ $item->keterangan}}
