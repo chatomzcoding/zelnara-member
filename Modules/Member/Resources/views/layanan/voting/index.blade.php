@@ -60,24 +60,21 @@
                                                 {{ $item->status }}
                                             </td>
                                             <td class="text-center">
-                                                <button
-                                                    class="btn btn-success btn-sm btn-icon"
-                                                    data-bs-target="#edit"
-                                                    data-bs-toggle="modal"
-                                                    data-nama = "{{ $item->nama }}"
-                                                    data-keterangan = "{{ $item->keterangan }}"
-                                                    data-tanggal_mulai = "{{ $item->tanggal_mulai }}"
-                                                    data-tanggal_akhir = "{{ $item->tanggal_akhir }}"
-                                                    data-status = "{{ $item->status }}"
-                                                    data-sistem = "{{ $item->sistem }}"
-                                                    data-id ="{{ $item->id }}">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <form action="{{ url('layanan/voting/'.$item->id)}}" method="post" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                                </form>
+                                                <x-aksi :id="$item->id" link="layanan/voting">
+                                                    <button
+                                                        class="btn btn-success btn-sm btn-icon"
+                                                        data-bs-target="#edit"
+                                                        data-bs-toggle="modal"
+                                                        data-nama = "{{ $item->nama }}"
+                                                        data-keterangan = "{{ $item->keterangan }}"
+                                                        data-tanggal_mulai = "{{ $item->tanggal_mulai }}"
+                                                        data-tanggal_akhir = "{{ $item->tanggal_akhir }}"
+                                                        data-status = "{{ $item->status }}"
+                                                        data-sistem = "{{ $item->sistem }}"
+                                                        data-id ="{{ $item->id }}">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                </x-aksi>
                                             </td>
                                         </tr>
                                     @empty
