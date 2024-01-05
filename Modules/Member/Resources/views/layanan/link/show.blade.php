@@ -80,6 +80,7 @@
                                         <th>nama link</th>
                                         <th>Url</th>
                                         <th>Jumlah Klik</th>
+                                        <th>Urutan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -95,6 +96,7 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">{{ $item->jumlah_klik }}</td>
+                                            <td class="text-center">{{ $item->urutan }}</td>
                                             <td class="text-center">
                                                 <button
                                                     class="btn btn-success btn-sm btn-icon"
@@ -103,6 +105,7 @@
                                                     data-nama = "{{ $item->nama }}"
                                                     data-icon = "{{ $item->icon }}"
                                                     data-url = "{{ $item->url }}"
+                                                    data-urutan = "{{ $item->urutan }}"
                                                     data-id ="{{ $item->id }}">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
@@ -215,6 +218,10 @@
             <label for="">url</label>
             <input type="text" name="url" class="form-control" required>
         </div>
+        <div class="mb-2">
+            <label for="">Urutan</label>
+            <input type="number" name="urutan" min="1" max="100" class="form-control" required>
+        </div>
     </x-bsmodal>
     <x-bsmodal id="tambahkatalog" kategori="tambah" judul="Tambah Katalog" link="zelnaralink/linkmasterkatalog">
         <input type="hidden" name="linkmaster_id" value="{{ $linkmaster->id}}">
@@ -257,6 +264,10 @@
             <label for="">url</label>
             <input type="text" name="url" id="url" class="form-control" required>
         </div>
+        <div class="mb-2">
+            <label for="">Urutan</label>
+            <input type="number" name="urutan" id="urutan" min="1" max="100" class="form-control" required>
+        </div>
     </x-bsmodal> 
     <x-bsmodal id="editkatalog" kategori="edit" judul="Edit Katalog" link="zelnaralink/linkmasterkatalog/id">
         <div class="mb-2">
@@ -288,6 +299,7 @@
                 var nama = button.data('nama')
                 var icon = button.data('icon')
                 var url = button.data('url')
+                var urutan = button.data('urutan')
                 var id = button.data('id')
         
                 var modal = $(this)
@@ -295,6 +307,7 @@
                 modal.find('.modal-body #nama').val(nama);
                 modal.find('.modal-body #icon').val(icon);
                 modal.find('.modal-body #url').val(url);
+                modal.find('.modal-body #urutan').val(urutan);
                 modal.find('.modal-body #id').val(id);
             });
 

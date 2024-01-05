@@ -19,6 +19,7 @@ class CreateLinkMasterButtonTable extends Migration
             $table->text('icon');
             $table->text('url');
             $table->integer('jumlah_klik');
+            $table->integer('urutan');
             $table->timestamps();
         });
     }

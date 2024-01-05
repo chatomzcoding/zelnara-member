@@ -39,6 +39,7 @@ class LinkmasterbuttonController extends Controller
         $button->nama = $request->nama;
         $button->icon = $request->icon;
         $button->url = $request->url;
+        $button->urutan = $request->urutan;
         $button->jumlah_klik = $request->jumlah_klik;
         $button->save();
 
@@ -77,6 +78,7 @@ class LinkmasterbuttonController extends Controller
         $button->nama = $request->nama;
         $button->icon = $request->icon;
         $button->url = $request->url;
+        $button->urutan = $request->urutan;
         $button->save();
 
         return back()->with('ts','Data Button berhasil diperbaharui');
