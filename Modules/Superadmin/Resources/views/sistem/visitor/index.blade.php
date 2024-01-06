@@ -18,7 +18,6 @@
                                     <th>Browser</th>
                                     <th>Link</th>
                                     <th>Hits</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

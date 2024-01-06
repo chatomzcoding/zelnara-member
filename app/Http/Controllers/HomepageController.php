@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Crypt;
 use Modules\Layanan\Entities\Voting;
 use Modules\Layanan\Entities\Votingpilihan;
 use Modules\Superadmin\Entities\Datapokok;
+use Modules\Superadmin\Entities\Visitor;
 use Modules\Zelnaralink\Entities\Linkmaster;
 use Modules\Zelnaralink\Entities\Linkmasterbutton;
 
@@ -40,6 +41,21 @@ class HomepageController extends Controller
         }
         $linkmaster->view = $linkmaster->view + 1;
         $linkmaster->save();
+
+        $visitor = Visitor::where('ip',get_client_ip_2())->where('tanggal',tgl_sekarang())->where('link','zelnara-link')->first();
+        if (!$visitor) {
+            $visitor = New Visitor;
+            $visitor->ip = get_client_ip_2();
+            $visitor->browser = get_client_browser();
+            $visitor->tanggal = tgl_sekarang();
+            $visitor->link      = 'zelnara-link';
+            $visitor->hits      = 1;
+            $visitor->save();
+        } else {
+            $visitor->hits      = $visitor->hits + 1;
+            $visitor->save();
+        }
+
         return view('zelnara.link.show',compact('linkmaster'));
     }
 
@@ -55,6 +71,20 @@ class HomepageController extends Controller
         }
         // $voting->view = $voting->view + 1;
         // $voting->save();
+        $visitor = Visitor::where('ip',get_client_ip_2())->where('tanggal',tgl_sekarang())->where('link','zelnara-voting')->first();
+        if (!$visitor) {
+            $visitor = New Visitor;
+            $visitor->ip = get_client_ip_2();
+            $visitor->browser = get_client_browser();
+            $visitor->tanggal = tgl_sekarang();
+            $visitor->link      = 'zelnara-voting';
+            $visitor->hits      = 1;
+            $visitor->save();
+        } else {
+            $visitor->hits      = $visitor->hits + 1;
+            $visitor->save();
+        }
+
         return view('zelnara.voting.show',compact('voting'));
     }
 
@@ -71,7 +101,6 @@ class HomepageController extends Controller
                 }
                 break;
             case 'vote_pilihan':
-                $jumlah = NULL;
                 $id = (isset($_GET['id'])) ? Crypt::decryptString($_GET['id']) : NULL ;
                 $pilihan = Votingpilihan::find($id);
                 if ($pilihan) {
