@@ -57,16 +57,16 @@
                     <span>Kategori</span>
                 </a>
             </li>
+            <li
+                class="sidebar-item {{ menuaktif($menuaktif,'visitor')}}">
+                <a href="{{ url('superadmin/visitor')}}" class='sidebar-link'>
+                    <i class="bi bi-person"></i>
+                    <span>Visitor</span>
+                </a>
+            </li>
         @endif
     {{-- Menu Akhir Superadmin --}}
 
-    {{-- <li
-        class="sidebar-item {{ menuaktif($menuaktif,'visitor')}}">
-        <a href="{{ url('visitor')}}" class='sidebar-link'>
-            <i class="bi bi-person"></i>
-            <span>Visitor</span>
-        </a>
-    </li> --}}
     <li class="sidebar-item">
         <form method="POST" action="{{ route('logout') }}">
         @csrf
