@@ -17,7 +17,7 @@
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Visit</h6>
-                                        {{-- <h6 class="font-extrabold mb-0">{{ $statistik['visit']}}</h6> --}}
+                                        <h6 class="font-extrabold mb-0">{{ $statistik['visit']}}</h6>
                                     </div>
                                 </div> 
                             </div>
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Visitor</h6>
-                                        {{-- <h6 class="font-extrabold mb-0">{{ $statistik['visitor']}}</h6> --}}
+                                        <h6 class="font-extrabold mb-0">{{ $statistik['visitor']}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -50,8 +50,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Produk</h6>
-                                        {{-- <h6 class="font-extrabold mb-0">{{ $statistik['produk']}}</h6> --}}
+                                        <h6 class="text-muted font-semibold">Layanan</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $statistik['layanan']}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -63,12 +63,12 @@
                                 <div class="row">
                                     <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon red mb-2">
-                                            <i class="iconly-boldGame"></i>
+                                            <i class="iconly-boldProfile"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Mitra</h6>
-                                        {{-- <h6 class="font-extrabold mb-0">{{ $statistik['mitra']}}</h6> --}}
+                                        <h6 class="text-muted font-semibold">Member</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $statistik['member']}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                                         </div>
                                     </div>
                                     <div class="col-5">
-                                        {{-- <h5 class="mb-0 text-end">{{ $statistik['visitor']}}</h5> --}}
+                                        <h5 class="mb-0 text-end">{{ $statistik['visitor-harian']}}</h5>
                                     </div>
                                     <div class="col-12">
                                         <div id="chart-europe"></div>
@@ -124,7 +124,7 @@
                                         </div>
                                     </div>
                                     <div class="col-5">
-                                        {{-- <h5 class="mb-0 text-end">{{ $statistik['visit']}}</h5> --}}
+                                        <h5 class="mb-0 text-end">{{ $statistik['visit-harian']}}</h5>
                                     </div>
                                     <div class="col-12">
                                         <div id="chart-america"></div>
@@ -154,7 +154,7 @@
                     <div class="col-12 col-xl-8">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Produk Terbaru</h4>
+                                <h4>Layanan Terbaru</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -166,12 +166,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @foreach ($produk as $item)
+                                            @foreach ($layanan as $item)
                                                 <tr>
                                                     <td class="col-4">
                                                         <div class="d-flex align-items-center">
                                                             <div class="avatar avatar-md">
-                                                                <i class="{{ $item->icon}} text-{{ $item->warna}}"></i>
+                                                                <img src="{{ asset('img/sistem/'.$item->logo)}}" alt="Face 1">
                                                             </div>
                                                             <p class="font-bold ms-3 mb-0 small">{{ $item->nama}}</p>
                                                         </div>
@@ -180,7 +180,7 @@
                                                         <p class=" mb-0">{{ $item->deskripsi }}</p>
                                                     </td>
                                                 </tr>
-                                            @endforeach --}}
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -193,37 +193,58 @@
                 <div class="card">
                     <div class="card-body py-4 px-4">
                         <div class="d-flex align-items-center">
-                            {{-- <div class="avatar avatar-xl">
-                                <img src="{{ asset('img/icon.png')}}" alt="Face 1">
-                            </div> --}}
+                            <div class="avatar avatar-md">
+                                <img src="{{ asset('img/sistem/'.$datapokok->favicon)}}" alt="Face 1">
+                            </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold">Djuragan</h5>
-                                {{-- <h6 class="text-muted mb-0">@appchatomz</h6> --}}
+                                <h5 class="font-bold">Zelnara Official</h5>
+                                <h6 class="text-muted mb-0">@zelnara</h6>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{-- <div class="card">
+                <div class="card">
                     <div class="card-header pb-1">
-                        <h4>Segera Hadir</h4>
+                        <h4>Voting</h4>
                     </div>
                     <div class="card-content pb-2">
-                        @foreach ($data->fitursegerahadir as $item)
+                        @foreach ($voting as $item)
                             <div class="recent-message d-flex px-4 py-2">
                                 <div class="avatar avatar-lg">
-                                    <i class="{{ $item->icon}} text-{{ $item->warna}}"></i>
+                                    <img src="{{ asset('img/layanan/voting/'.$item->gambar)}}" alt="Face 1">
                                 </div>
                                 <div class="name ms-4">
                                     <h5 class="mb-1 small">{{ $item->nama }}</h5>
-                                    <h6 class="text-muted mb-0 small">{{ $item->ditunggu}} menunggu</h6>
+                                    <h6 class="text-muted mb-0 small">{{ $item->view}} Dilihat</h6>
                                 </div>
                             </div>
                         @endforeach
-                        <div class="px-4">
-                            <a href="{{ url('fitur')}}" class='btn btn-block btn-outline-primary font-bold mt-3'>Selengkapnya</a>
-                        </div>
+                        {{-- <div class="px-4">
+                            <a href="{{ url('superadmin/layanan')}}" class='btn btn-block btn-outline-primary font-bold mt-3'>Selengkapnya</a>
+                        </div> --}}
                     </div>
-                </div> --}}
+                </div>
+                <div class="card">
+                    <div class="card-header pb-1">
+                        <h4>Link</h4>
+                    </div>
+                    <div class="card-content pb-2">
+                        @foreach ($link as $item)
+                            <div class="recent-message d-flex px-4 py-2">
+                                <div class="avatar avatar-lg">
+                                    <img src="{{ asset('img/layanan/link/'.$item->gambar)}}" alt="Face 1">
+                                </div>
+                                <div class="name ms-4">
+                                    <h5 class="mb-1 small">{{ $item->judul }}</h5>
+                                    <h6 class="text-muted mb-0 small">{{ $item->view}} Dilihat</h6>
+                                </div>
+                            </div>
+                        @endforeach
+                        {{-- <div class="px-4">
+                            <a href="{{ url('superadmin/layanan')}}" class='btn btn-block btn-outline-primary font-bold mt-3'>Selengkapnya</a>
+                        </div> --}}
+                    </div>
+                </div>
             </div>
         </section>
     </div>

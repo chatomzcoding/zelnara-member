@@ -5,6 +5,12 @@ namespace Modules\Superadmin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Layanan\Entities\Voting;
+use Modules\Superadmin\Entities\Datapokok;
+use Modules\Superadmin\Entities\Layanan;
+use Modules\Superadmin\Entities\Member;
+use Modules\Superadmin\Entities\Visitor;
+use Modules\Zelnaralink\Entities\Linkmaster;
 
 class SuperadminController extends Controller
 {
@@ -14,7 +20,26 @@ class SuperadminController extends Controller
      */
     public function index()
     {
-        return view('superadmin::index');
+        $tanggal    = tgl_sekarang();
+        $visit      = Visitor::sum('hits');
+        $visitharian      = Visitor::whereDate('tanggal',$tanggal)->sum('hits');
+        $visitor    = Visitor::count();
+        $visitorharian    = Visitor::whereDate('tanggal',$tanggal)->count();
+        $member     = Member::count();
+        $layanan    = Layanan::count();
+        $statistik = [
+            'visit' => $visit,
+            'visit-harian' => $visitharian,
+            'visitor' => $visitor,
+            'visitor-harian' => $visitorharian,
+            'layanan' => $layanan,
+            'member' => $member  
+        ];
+        $layanan    = Layanan::latest()->limit(3)->get();
+        $datapokok  = Datapokok::first();
+        $voting     = Voting::latest()->limit(3)->get();
+        $link       = Linkmaster::latest()->limit(3)->get();
+        return view('superadmin::index', compact('statistik','layanan','datapokok','voting','link'));
     }
 
     /**
