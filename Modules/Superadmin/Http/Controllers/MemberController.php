@@ -95,6 +95,7 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Member::find($id)->delete();
+        return back()->with('te','Member berhasil dihapus');
     }
 }

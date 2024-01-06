@@ -29,7 +29,7 @@
                         </form>
                     </section>
                     <div class="table-responsive mt-3">
-                        <table class="table">
+                        <table class="table table-datatables">
                             <thead class="text-center">
                                 <tr>
                                     <th width="5%">No</th>
@@ -60,26 +60,23 @@
                                             @endswitch
                                         </td>
                                         <td class="text-center">
-                                            <button
-                                                class="btn btn-success btn-sm btn-icon"
-                                                data-bs-target="#edit"
-                                                data-bs-toggle="modal"
-                                                data-nama = "{{ $item->nama }}"
-                                                data-label="{{ $item->label }}"
-                                                data-keterangan="{{ $item->keterangan }}"
-                                                data-id ="{{ $item->id }}">
-                                                <i class="bi bi-pencil"></i>
-                                            </button>
-                                            <form action="{{ url('superadmin/kategori/'.$item->id)}}" method="post" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                            </form>
+                                            <x-aksi :id="$item->id" link="superadmin/kategori">
+                                                <button
+                                                    class="btn btn-success btn-sm btn-icon"
+                                                    data-bs-target="#edit"
+                                                    data-bs-toggle="modal"
+                                                    data-nama = "{{ $item->nama }}"
+                                                    data-label="{{ $item->label }}"
+                                                    data-keterangan="{{ $item->keterangan }}"
+                                                    data-id ="{{ $item->id }}">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                            </x-aksi>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr class="text-center">
-                                        <td colspan="4">belum ada data</td>
+                                        <td colspan="5">belum ada data</td>
                                     </tr>
                                 @endforelse
                             </tbody>

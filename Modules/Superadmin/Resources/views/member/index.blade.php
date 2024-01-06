@@ -14,7 +14,7 @@
                 @endif
                 <div class="card-body">
                     <div class="table-responsive mt-3">
-                        <table class="table">
+                        <table class="table table-datatables">
                             <thead class="text-center">
                                 <tr>
                                     <th width="5%">No</th>
@@ -38,28 +38,25 @@
                                         <td>{{ $item->level }}</td>
                                         <td>{{ $item->status }}</td>
                                         <td class="text-center">
-                                            <button
-                                                class="btn btn-success btn-sm btn-icon"
-                                                data-bs-target="#edit"
-                                                data-bs-toggle="modal"
-                                                data-nama = "{{ $item->nama }}"
-                                                data-alamat="{{ $item->alamat }}"
-                                                data-telp="{{ $item->telp }}"
-                                                data-email="{{ $item->email }}"
-                                                data-level="{{ $item->level }}"
-                                                data-id ="{{ $item->id }}">
-                                                <i class="bi bi-pencil"></i>
-                                            </button>
-                                            <form action="{{ url('superadmin/member/'.$item->id)}}" method="post" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                            </form>
+                                            <x-aksi :id="$item->id" link="superadmin/member">
+                                                <button
+                                                    class="btn btn-success btn-sm btn-icon"
+                                                    data-bs-target="#edit"
+                                                    data-bs-toggle="modal"
+                                                    data-nama = "{{ $item->nama }}"
+                                                    data-alamat="{{ $item->alamat }}"
+                                                    data-telp="{{ $item->telp }}"
+                                                    data-email="{{ $item->email }}"
+                                                    data-level="{{ $item->level }}"
+                                                    data-id ="{{ $item->id }}">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                            </x-aksi>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr class="text-center">
-                                        <td colspan="4">belum ada data</td>
+                                        <td colspan="8">belum ada data</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -70,106 +67,69 @@
     
         </section>
     </div>
-
-    <div class="modal" id="tambah" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('superadmin/member')}}" method="post">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Member</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-2">
-                        <label for="">Nama Member</label>
-                        <input type="text" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Alamat</label>
-                        <input type="text" name="alamat" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Telephone</label>
-                        <input type="tel" name="telp" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Email</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Level</label>
-                        <select name="level" id="" class="form-select" required>
-                            <option value="">-- pilih level --</option>
-                            @foreach (data_level() as $item)
-                                <option value="{{ $item}}">{{ $item}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">User</label>
-                        <select name="user_id" id="" class="form-select" required>
-                            <option value="">-- pilih user --</option>
-                            @foreach ($user as $item)
-                                <option value="{{ $item->id}}">{{ $item->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">SIMPAN</button>
-                </div>
-            </form>
-          </div>
+    <x-bsmodal id="tambah" kategori="tambah" judul="Tambah Member" link="superadmin/member">
+        <div class="mb-2">
+            <label for="">Nama Member</label>
+            <input type="text" name="nama" class="form-control" required>
         </div>
-    </div>
-    <div class="modal" id="edit" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="{{ url('superadmin/member/id')}}" method="post">
-                @csrf
-                @method('patch')
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Member</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-2">
-                        <label for="">Nama Member</label>
-                        <input type="text" name="nama" id="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Alamat</label>
-                        <input type="text" name="alamat" id="alamat" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Telephone</label>
-                        <input type="tel" name="telp" id="telp" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="">Level</label>
-                        <select name="level" id="level" class="form-select" required>
-                            <option value="">-- pilih level --</option>
-                            @foreach (data_level() as $item)
-                                <option value="{{ $item}}">{{ $item}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">SIMPAN PERUBAHAN</button>
-                </div>
-            </form>
-          </div>
+        <div class="mb-2">
+            <label for="">Alamat</label>
+            <input type="text" name="alamat" class="form-control" required>
         </div>
-    </div>
+        <div class="mb-2">
+            <label for="">Telephone</label>
+            <input type="tel" name="telp" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Email</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Level</label>
+            <select name="level" id="" class="form-select" required>
+                <option value="">-- pilih level --</option>
+                @foreach (data_level() as $item)
+                    <option value="{{ $item}}">{{ $item}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-2">
+            <label for="">User</label>
+            <select name="user_id" id="" class="form-select" required>
+                <option value="">-- pilih user --</option>
+                @foreach ($user as $item)
+                    <option value="{{ $item->id}}">{{ $item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </x-bsmodal>
+    <x-bsmodal id="edit" kategori="edit" judul="Edit Member" link="superadmin/member/id">
+        <div class="mb-2">
+            <label for="">Nama Member</label>
+            <input type="text" name="nama" id="nama" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Alamat</label>
+            <input type="text" name="alamat" id="alamat" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Telephone</label>
+            <input type="tel" name="telp" id="telp" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Email</label>
+            <input type="email" name="email" id="email" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Level</label>
+            <select name="level" id="level" class="form-select" required>
+                <option value="">-- pilih level --</option>
+                @foreach (data_level() as $item)
+                    <option value="{{ $item}}">{{ $item}}</option>
+                @endforeach
+            </select>
+        </div>
+    </x-bsmodal>
 
     <x-slot name="kodejs">
         <script>

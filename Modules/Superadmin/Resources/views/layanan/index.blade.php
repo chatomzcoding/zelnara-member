@@ -13,7 +13,7 @@
                     </header>
                     <main>
                         <div class="table-responsive mt-3">
-                            <table class="table">
+                            <table class="table table-datatables">
                                 <thead class="text-center">
                                     <tr>
                                         <th width="5%">No</th>
@@ -31,7 +31,7 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>
-                                                <img src="{{ asset('img/sistem/'.$item->logo)}}" alt="" width="70px">
+                                                <img src="{{ asset('img/sistem/'.$item->logo)}}" alt="" width="50px">
                                             </td>
                                             <td>{{ $item->nama }}</td>
                                             <td>{{ $item->kode }}</td>
@@ -45,30 +45,29 @@
                                                     @case('qodex')
                                                         {{ $item->qodexmaster()->count()}} Qodex
                                                         @break
+                                                    @case('voting')
+                                                        {{ $item->voting()->count()}} Voting
+                                                        @break
                                                     @default
                                                         
                                                 @endswitch
 
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ url('superadmin/layanan/'.$item->id)}}" class="btn btn-primary btn-sm"><i class="bi bi-file-text"></i></a>
-                                                <button
-                                                    class="btn btn-success btn-sm btn-icon"
-                                                    data-bs-target="#editlink"
-                                                    data-bs-toggle="modal"
-                                                    data-nama = "{{ $item->nama }}"
-                                                    data-kode = "{{ $item->kode }}"
-                                                    data-tagline = "{{ $item->tagline }}"
-                                                    data-deskripsi = "{{ $item->deskripsi }}"
-                                                    data-url = "{{ $item->url }}"
-                                                    data-id ="{{ $item->id }}">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <form action="{{ url('superadmin/layanan/'.$item->id)}}" method="post" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                                </form>
+                                                <x-aksi :id="$item->id" link="superadmin/layanan" :detail="'superadmin/layanan/'.$item->id">
+                                                    <button
+                                                        class="btn btn-success btn-sm btn-icon"
+                                                        data-bs-target="#editlink"
+                                                        data-bs-toggle="modal"
+                                                        data-nama = "{{ $item->nama }}"
+                                                        data-kode = "{{ $item->kode }}"
+                                                        data-tagline = "{{ $item->tagline }}"
+                                                        data-deskripsi = "{{ $item->deskripsi }}"
+                                                        data-url = "{{ $item->url }}"
+                                                        data-id ="{{ $item->id }}">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                </x-aksi>
                                             </td>
                                         </tr>
                                     @empty

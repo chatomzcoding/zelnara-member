@@ -94,6 +94,6 @@ class KategoriController extends Controller
     {
         Kategori::find($id)->delete();
 
-        return back()->with('ts','Kategori berhasil dihapus');
+        return back()->with('te','Kategori berhasil dihapus');
     }
 }

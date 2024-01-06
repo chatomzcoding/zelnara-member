@@ -15,13 +15,15 @@ class Aksi extends Component
     public $id;
     public $unique;
     public $hapus;
+    public $detail;
 
-    public function __construct($link=NULL,$id,$unique=NULL,$hapus=TRUE)
+    public function __construct($link=NULL,$id,$unique=NULL,$hapus=TRUE,$detail=NULL)
     {
         $this->link = $link;
         $this->id = $id;
         $this->unique = $unique;
         $this->hapus = $hapus;
+        $this->detail = $detail;
     }
 
     /**

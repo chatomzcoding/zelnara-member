@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive mt-3">
-                        <table class="table">
+                        <table class="table table-datatables">
                             <thead class="text-center">
                                 <tr>
                                     <th width="5%">No</th>
