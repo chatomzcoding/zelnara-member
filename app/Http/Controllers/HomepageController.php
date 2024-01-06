@@ -69,8 +69,8 @@ class HomepageController extends Controller
         if (!$voting) {
             return redirect('/page/404');
         }
-        // $voting->view = $voting->view + 1;
-        // $voting->save();
+        $voting->view = $voting->view + 1;
+        $voting->save();
         $visitor = Visitor::where('ip',get_client_ip_2())->where('tanggal',tgl_sekarang())->where('link','zelnara-voting')->first();
         if (!$visitor) {
             $visitor = New Visitor;

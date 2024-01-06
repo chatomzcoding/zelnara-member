@@ -23,6 +23,7 @@ class CreateVotingTable extends Migration
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir');
             $table->string('sistem',100);
+            $table->integer('view');
             $table->timestamps();
         });
     }

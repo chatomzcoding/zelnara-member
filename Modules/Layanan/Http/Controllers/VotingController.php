@@ -46,6 +46,7 @@ class VotingController extends Controller
         $voting->tanggal_akhir = $request->tanggal_akhir;
         $voting->sistem = $request->sistem;
         $voting->keterangan = $request->keterangan;
+        $voting->view = 0;
 
         $request->validate([
             'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:3000',

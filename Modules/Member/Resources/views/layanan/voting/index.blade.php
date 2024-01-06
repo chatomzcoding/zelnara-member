@@ -37,6 +37,7 @@
                                         <th>Keterangan</th>
                                         <th>Sistem</th>
                                         <th>Status</th>
+                                        <th>View</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -62,6 +63,9 @@
                                             </td>
                                             <td class="text-center">
                                                 {{ $item->status }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $item->view }}
                                             </td>
                                             <td class="text-center">
                                                 <x-aksi :id="$item->id" link="layanan/voting">
