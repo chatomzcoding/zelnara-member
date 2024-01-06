@@ -16,7 +16,7 @@
                     </header>
                     <main>
                         <div class="table-responsive mt-3">
-                            <table class="table">
+                            <table class="table table-datatables">
                                 <thead class="text-center">
                                     <tr>
                                         <th width="5%">No</th>
@@ -42,23 +42,19 @@
                                             </td>
                                             <td class="text-center">{{ $item->view }}</td>
                                             <td class="text-center">
-                                                <a href="{{ url('member/layananlink/'.Crypt::encryptString($item->id))}}" class="btn btn-primary btn-sm btn-icon"><i class="bi bi-file-text"></i></a>
-                                                <button
-                                                    class="btn btn-success btn-sm btn-icon"
-                                                    data-bs-target="#editlink"
-                                                    data-bs-toggle="modal"
-                                                    data-judul = "{{ $item->judul }}"
-                                                    data-deskripsi = "{{ $item->deskripsi }}"
-                                                    data-tema = "{{ $item->tema }}"
-                                                    data-url = "{{ $item->url }}"
-                                                    data-id ="{{ $item->id }}">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <form action="{{ url('zelnaralink/linkmaster/'.$item->id)}}" method="post" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                                </form>
+                                                <x-aksi :id="$item->id" link="zelnaralink/linkmaster" :detail="'member/layananlink/'.Crypt::encryptString($item->id)">
+                                                    <button
+                                                        class="btn btn-success btn-sm btn-icon"
+                                                        data-bs-target="#editlink"
+                                                        data-bs-toggle="modal"
+                                                        data-judul = "{{ $item->judul }}"
+                                                        data-deskripsi = "{{ $item->deskripsi }}"
+                                                        data-tema = "{{ $item->tema }}"
+                                                        data-url = "{{ $item->url }}"
+                                                        data-id ="{{ $item->id }}">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                </x-aksi>
                                             </td>
                                         </tr>
                                     @empty

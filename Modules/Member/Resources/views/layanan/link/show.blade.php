@@ -9,7 +9,6 @@
             ]"
             halaman="Detail Link"
         >
-    
         </x-mzheader>
         <section class="section">
             <div class="card">
@@ -64,7 +63,7 @@
             </div>
             <div class="card mt-2">
                 <div class="card-header">
-                    Button Link
+                    <i class="bi bi-menu-button"></i> Button Link
                 </div>
                 <div class="card-body">
                     <header>
@@ -72,7 +71,7 @@
                     </header>
                     <main>
                         <div class="table-responsive mt-3">
-                            <table class="table">
+                            <table class="table table-datatables">
                                 <thead class="text-center">
                                     <tr>
                                         <th width="5%">No</th>
@@ -98,22 +97,19 @@
                                             <td class="text-center">{{ $item->jumlah_klik }}</td>
                                             <td class="text-center">{{ $item->urutan }}</td>
                                             <td class="text-center">
-                                                <button
-                                                    class="btn btn-success btn-sm btn-icon"
-                                                    data-bs-target="#edit"
-                                                    data-bs-toggle="modal"
-                                                    data-nama = "{{ $item->nama }}"
-                                                    data-icon = "{{ $item->icon }}"
-                                                    data-url = "{{ $item->url }}"
-                                                    data-urutan = "{{ $item->urutan }}"
-                                                    data-id ="{{ $item->id }}">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <form action="{{ url('zelnaralink/linkmasterbutton/'.$item->id)}}" method="post" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                                </form>
+                                                <x-aksi :id="$item->id" link="zelnaralink/linkmasterbutton">
+                                                    <button
+                                                        class="btn btn-success btn-sm btn-icon"
+                                                        data-bs-target="#edit"
+                                                        data-bs-toggle="modal"
+                                                        data-nama = "{{ $item->nama }}"
+                                                        data-icon = "{{ $item->icon }}"
+                                                        data-url = "{{ $item->url }}"
+                                                        data-urutan = "{{ $item->urutan }}"
+                                                        data-id ="{{ $item->id }}">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                </x-aksi>
                                             </td>
                                         </tr>
                                     @empty
@@ -129,7 +125,7 @@
             </div>
             <div class="card mt-2">
                 <div class="card-header">
-                    Katalog
+                    <i class="bi bi-image"></i> Katalog
                 </div>
                 <div class="card-body">
                     <header>
@@ -137,7 +133,7 @@
                     </header>
                     <main>
                         <div class="table-responsive mt-3">
-                            <table class="table">
+                            <table class="table table-datatables">
                                 <thead class="text-center">
                                     <tr>
                                         <th width="5%">No</th>
@@ -167,22 +163,19 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                <button
-                                                    class="btn btn-success btn-sm btn-icon"
-                                                    data-bs-target="#editkatalog"
-                                                    data-bs-toggle="modal"
-                                                    data-nama = "{{ $item->nama }}"
-                                                    data-deskripsi = "{{ $item->deskripsi }}"
-                                                    data-tagline = "{{ $item->tagline }}"
-                                                    data-harga = "{{ $item->harga }}"
-                                                    data-id ="{{ $item->id }}">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <form action="{{ url('zelnaralink/linkmasterkatalog/'.$item->id)}}" method="post" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                                </form>
+                                                <x-aksi :id="$item->id" link="zelnaralink/linkmasterkatalog">
+                                                    <button
+                                                        class="btn btn-success btn-sm btn-icon"
+                                                        data-bs-target="#editkatalog"
+                                                        data-bs-toggle="modal"
+                                                        data-nama = "{{ $item->nama }}"
+                                                        data-deskripsi = "{{ $item->deskripsi }}"
+                                                        data-tagline = "{{ $item->tagline }}"
+                                                        data-harga = "{{ $item->harga }}"
+                                                        data-id ="{{ $item->id }}">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                </x-aksi>
                                             </td>
                                         </tr>
                                     @empty

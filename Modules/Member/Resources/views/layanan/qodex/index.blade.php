@@ -1,22 +1,11 @@
 <x-mazer-layout title="Data Layanan" menu="layanan">
     <div class="page-heading">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>{{ $layanan->nama }}</h3>
-                    <p class="text-subtitle text-muted">Layanan {{ $layanan->link }}</p>
-                </div>
-                <div class="col-12 col-md-6 order-md-2 order-first">
-                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ url('/member/layanan')}}">Layanan</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Detail</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        <x-mzheader
+            judul="{{ $layanan->nama }}"
+            deskripsi="Layanan {{ $layanan->link }}"
+            :link="['/member/layanan' => 'Layanan']"
+            halaman="detail">
+        </x-mzheader>
         <section class="section">
             <div class="card">
                 <div class="card-body">
@@ -26,7 +15,7 @@
                     </header>
                     <main>
                         <div class="table-responsive mt-3">
-                            <table class="table">
+                            <table class="table table-datatables">
                                 <thead class="text-center">
                                     <tr>
                                         <th width="5%">No</th>
@@ -68,24 +57,21 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                <button
-                                                    class="btn btn-success btn-sm btn-icon"
-                                                    data-bs-target="#edit"
-                                                    data-bs-toggle="modal"
-                                                    data-nama = "{{ $item->nama }}"
-                                                    data-keterangan = "{{ $item->keterangan }}"
-                                                    data-kategori = "{{ $item->kategori }}"
-                                                    data-kode = "{{ $item->kode }}"
-                                                    data-ukuran = "{{ $item->ukuran }}"
-                                                    data-isi = "{{ $item->isi }}"
-                                                    data-id ="{{ $item->id }}">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <form action="{{ url('layanan/qodexmaster/'.$item->id)}}" method="post" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                                </form>
+                                                <x-aksi :id="$item->id" link="layanan/qodexmaster">
+                                                    <button
+                                                        class="btn btn-success btn-sm btn-icon"
+                                                        data-bs-target="#edit"
+                                                        data-bs-toggle="modal"
+                                                        data-nama = "{{ $item->nama }}"
+                                                        data-keterangan = "{{ $item->keterangan }}"
+                                                        data-kategori = "{{ $item->kategori }}"
+                                                        data-kode = "{{ $item->kode }}"
+                                                        data-ukuran = "{{ $item->ukuran }}"
+                                                        data-isi = "{{ $item->isi }}"
+                                                        data-id ="{{ $item->id }}">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                </x-aksi>
                                             </td>
                                         </tr>
                                     @empty
