@@ -226,7 +226,7 @@
                             icon: "error",
                             title: "Oops...",
                             text: "Terlalu Bersemangat Memberikan Voting hihi!",
-                            footer: "Kami membatasi terlalu banyak vote (mencegah bot,DDOS, dkk), silahkan vote dengan normal dan coba lagi nanti! Terima Kasih",
+                            footer: "Kami membatasi terlalu banyak vote (mencegah bot,DDOS, dkk), silahkan vote beberapa menit lagi dan refresh halaman! Terima Kasih",
                         });
                     } else {
                         // Tangani kesalahan lainnya
