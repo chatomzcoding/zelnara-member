@@ -23,6 +23,7 @@ class AddKirimHadiahToWeddingTable extends Migration
             $table->string('jam_akad')->nullable();
             $table->string('jam_resepsi')->nullable();
             $table->text('maps')->nullable();
+            $table->text('maps_link')->nullable();
         });
     }
 

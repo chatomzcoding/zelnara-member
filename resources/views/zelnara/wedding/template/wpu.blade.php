@@ -286,7 +286,7 @@
         </div>
       </form>
 
-      <div class="row justify-content-center mt-5">
+      {{-- <div class="row justify-content-center mt-5">
         <div class="col-md-6">
             <section>
               <form class="row row-cols-md-auto g-3 align-items-center justify-content-center" action="" method="post" id="form-ucapan">
@@ -309,7 +309,7 @@
               </form>
             </section>
         </div>
-      </div>
+      </div> --}}
 
     </div>
   </section>

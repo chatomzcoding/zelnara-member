@@ -42,6 +42,7 @@
                                         </div>
                                         <div class="card-footer">
                                             <x-aksi :id="$item->id" link="zelnarawedding/wedding" :detail="'member/layananwedding/'.Crypt::encryptString($item->id)">
+                                                <a href="https://wedding.zelnara.com/{{ $item->link}}" target="_blank" class="btn btn-info btn-sm"><i class="bi-send"></i></a>
                                             </x-aksi>
                                         </div>
                                     </div>
