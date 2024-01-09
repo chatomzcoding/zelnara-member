@@ -97,7 +97,7 @@
         <script src="{{ asset('template/mazer/assets/extensions/jquery/jquery.min.js')}}"></script>
         <script src="{{ asset('template/mazer/assets/extensions/datatables.net/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{ asset('template/mazer/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
-        <script src="{{ asset('template/mazer/assets/extensions/sweetalert2/sweetalert2.min.js')}}"></script>>
+        <script src="{{ asset('template/mazer/assets/extensions/sweetalert2/sweetalert2.min.js')}}"></script>
         <script src="{{ asset('template/mazer/assets/extensions/toastify-js/src/toastify.js')}}"></script>
 
         <script src="{{ asset('js/chatomz.js')}}"></script>

@@ -40,6 +40,8 @@ class WeddingController extends Controller
         $wedding = New Wedding;
         $wedding->member_id = $request->member_id;
         $wedding->layanan_id = $request->layanan_id;
+        $wedding->nama = $request->nama;
+        $wedding->link = $request->link;
         $wedding->weddingtemplate_id = $request->weddingtemplate_id;
         $wedding->tempat_pernikahan = $request->tempat_pernikahan;
         $wedding->alamat_pernikahan = $request->alamat_pernikahan;
@@ -88,10 +90,22 @@ class WeddingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $wedding = Wedding::find($request->id);
+        $wedding = Wedding::find($id);
+        $wedding->nama = $request->nama;
+        $wedding->link = $request->link;
         $wedding->tempat_pernikahan = $request->tempat_pernikahan;
         $wedding->alamat_pernikahan = $request->alamat_pernikahan;
         $wedding->tanggal_pernikahan = $request->tanggal_pernikahan;
+        $wedding->hadiah_nama1 = $request->hadiah_nama1;
+        $wedding->hadiah_nama2 = $request->hadiah_nama2;
+        $wedding->hadiah_no1 = $request->hadiah_no1;
+        $wedding->hadiah_no2 = $request->hadiah_no2;
+        $wedding->hadiah_an1 = $request->hadiah_an1;
+        $wedding->hadiah_an2 = $request->hadiah_an2;
+        $wedding->jam_akad = $request->jam_akad;
+        $wedding->jam_resepsi = $request->jam_resepsi;
+        $wedding->maps = $request->maps;
+        $wedding->maps_link = $request->maps_link;
 
         if (isset($request->photo)) {
             $request->validate([

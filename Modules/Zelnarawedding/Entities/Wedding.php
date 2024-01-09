@@ -26,5 +26,22 @@ class Wedding extends Model
     function weddingtemplate(){
         return $this->belongsTo(Weddingtemplate::class);
     }
-    
+
+    function weddingpasangan(){
+        return $this->hasMany(Weddingpasangan::class);
+    }
+
+    function weddinggaleri(){
+        return $this->hasMany(Weddinggaleri::class);
+    }
+
+    function weddingcerita(){
+        return $this->hasMany(Weddingcerita::class);
+    }
+    function weddingkehadiran(){
+        return $this->hasMany(Weddingkehadiran::class);
+    }
+    function weddingucapan(){
+        return $this->hasMany(Weddingucapan::class);
+    }
 }

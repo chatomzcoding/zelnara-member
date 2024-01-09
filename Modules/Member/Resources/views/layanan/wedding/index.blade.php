@@ -25,18 +25,24 @@
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#tambah"><i class="bi bi-plus-circle"></i> Tambah Wedding</button>
                     </header>
                     <main>
-                        <div class="row">
+                        <div class="row mt-2">
                             @foreach ($user->member->wedding as $item)
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-content">
                                         <img class="card-img-top img-fluid" src="{{ asset('img/layanan/wedding/'.$item->photo)}}" alt="Card image cap"/>
                                         <div class="card-body">
-                                            <h4 class="card-title">{{ $item->tanggal_pernikahan }}</h4>
+                                            <h4 class="card-title">{{ $item->nama }}</h4>
                                             <p class="card-text text-muted">
-                                            {{ $item->tempat_pernikahan}}
+                                            {{ $item->tempat_pernikahan}} <br>
+                                            {{ date_indo($item->tanggal_pernikahan)}}
                                             </p>
-                                            {{-- <a href="{{ url('member/layanan/'.$item->kode)}}" class="btn btn-primary btn-block">SELENGKAPNYA</a> --}}
+
+                                            {{-- <a href="{{ url('member/layanan/'.$item->kode)}}" class="btn btn-primary">SELENGKAPNYA</a> --}}
+                                        </div>
+                                        <div class="card-footer">
+                                            <x-aksi :id="$item->id" link="zelnarawedding/wedding" :detail="'member/layananwedding/'.Crypt::encryptString($item->id)">
+                                            </x-aksi>
                                         </div>
                                     </div>
                                 </div>
@@ -52,6 +58,14 @@
     <x-bsmodal id="tambah" kategori="tambah" judul="Tambah Wedding" link="zelnarawedding/wedding">
         <input type="hidden" name="member_id" value="{{ $user->member->id}}">
         <input type="hidden" name="layanan_id" value="{{ $layanan->id}}">
+        <div class="mb-2">
+            <label for="">Nama Pernikahan</label>
+            <input type="text" name="nama" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="">Link Pernikahan</label>
+            <input type="text" name="link" class="form-control" required>
+        </div>
         <div class="mb-2">
             <label for="">Tempat Pernikahan</label>
             <input type="text" name="tempat_pernikahan" class="form-control" required>
@@ -78,63 +92,4 @@
             <input type="file" name="photo" class="form-control">
         </div>
     </x-bsmodal>
-    
-    <x-bsmodal id="edit" kategori="edit" judul="Edit Qodex" link="layanan/qodexmaster/id'">
-        <div class="mb-2">
-            <label for="">Nama Qodex</label>
-            <input type="text" name="nama" id="nama" class="form-control" required>
-        </div>
-        <div class="mb-2">
-            <label for="">Keterangan</label>
-            <input type="text" name="keterangan" id="keterangan" class="form-control">
-        </div>
-        <div class="mb-2">
-            <label for="">Kategori</label>
-            <select name="kategori" id="kategori" class="form-select" required>
-                <option value="qrcode">Qr Code</option>
-                <option value="barcode">Barcode</option>
-            </select>
-        </div>
-        <div class="mb-2">
-            <label for="">isi Qodex</label>
-            <input type="text" name="isi" id="isi" class="form-control" maxlength="225" required>
-        </div>
-        <div class="mb-2">
-            <label for="">Kode</label>
-            <input type="text" name="kode" id="kode" class="form-control" maxlength="225">
-        </div>
-        <div class="mb-2">
-            <label for="">Ukuran</label>
-            <input type="number" name="ukuran" id="ukuran" min="1" class="form-control">
-        </div>
-        <div class="mb-2">
-            <label for="">Gambar</label>
-            <input type="file" name="gambar" class="form-control">
-        </div>
-    </x-bsmodal>
-
-    <x-slot name="kodejs">
-        <script>
-            $('#edit').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget)
-                var nama = button.data('nama')
-                var keterangan = button.data('keterangan')
-                var kode = button.data('kode')
-                var ukuran = button.data('ukuran')
-                var isi = button.data('isi')
-                var kategori = button.data('kategori')
-                var id = button.data('id')
-        
-                var modal = $(this)
-        
-                modal.find('.modal-body #nama').val(nama);
-                modal.find('.modal-body #keterangan').val(keterangan);
-                modal.find('.modal-body #kode').val(kode);
-                modal.find('.modal-body #ukuran').val(ukuran);
-                modal.find('.modal-body #isi').val(isi);
-                modal.find('.modal-body #kategori').val(kategori);
-                modal.find('.modal-body #id').val(id);
-            })
-        </script>
-    </x-slot>
 </x-mazer-layout>

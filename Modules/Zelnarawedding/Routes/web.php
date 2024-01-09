@@ -24,5 +24,10 @@ Route::middleware([
 
         Route::resource('wedding', WeddingController::class);
         Route::resource('weddingtemplate', WeddingtemplateController::class);
+        Route::resource('weddingpasangan', WeddingpasanganController::class);
+        Route::resource('weddinggaleri', WeddinggaleriController::class);
+        Route::resource('weddingcerita', WeddingceritaController::class);
+        Route::resource('weddingkehadiran', WeddingkehadiranController::class);
+        Route::resource('weddingucapan', WeddingucapanController::class);
     });
 });

@@ -10,6 +10,7 @@ use Modules\Superadmin\Entities\Datapokok;
 use Modules\Superadmin\Entities\Visitor;
 use Modules\Zelnaralink\Entities\Linkmaster;
 use Modules\Zelnaralink\Entities\Linkmasterbutton;
+use Modules\Zelnarawedding\Entities\Wedding;
 
 class HomepageController extends Controller
 {
@@ -86,6 +87,26 @@ class HomepageController extends Controller
         }
 
         return view('zelnara.voting.show',compact('voting'));
+    }
+    // ZELNARA WEDDING
+    
+    function wedding(){
+        return view('zelnara.wedding.index');
+    }
+    function weddingshow($url){
+        $wedding = Wedding::where('link',$url)->first();
+        if ($wedding) {
+            $pria       = $wedding->weddingpasangan()->where('jk','l')->first();
+            $wanita     = $wedding->weddingpasangan()->where('jk','p')->first();
+            $tanggal    = $wedding->tanggal_pernikahan;
+            $tanggal    = [
+                'day' => intval(substr($tanggal,8,2)),
+                'month' => intval(substr($tanggal,5,2)),
+                'year' => intval(substr($tanggal,0,4)),
+            ];
+            return view('zelnara.wedding.template.'.$wedding->weddingtemplate->kode,compact('wedding','pria','wanita','tanggal'));
+        }
+        return redirect('/page/404');
     }
 
     // AJAX

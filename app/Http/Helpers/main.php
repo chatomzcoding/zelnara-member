@@ -131,6 +131,49 @@ if (! function_exists('date_indo')) {
     }
 }
 
+// date indo
+if (! function_exists('daftar_hari')) {
+    function daftar_hari($data)
+    {
+        $hari 		= [	
+            'Sunday'    => 'Minggu',
+            'Monday'    => 'Senin',
+            'Tuesday'   => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday'  => 'Kamis',
+            'Friday'    => 'Jumat',
+            'Saturday'  => 'Sabtu'
+        ];
+        return $hari[$data];
+    }
+}
+if (! function_exists('daftar_bulan')) {
+    function daftar_bulan()
+    {
+        $bulan 		= [	'01' => 'Januari',
+                '02' => 'Februari',
+                '03' => 'Maret',
+                '04' => 'April',
+                '05' => 'Mei',
+                '06' => 'Juni',
+                '07' => 'Juli',
+                '08' => 'Agustus',
+                '09' => 'September',
+                '10' => 'Oktober',
+                '11' => 'November',
+                '12' => 'Desember'];
+        return $bulan;
+    }
+}
+// get nama hari
+if (! function_exists('hari_indo')) {
+    function hari_indo($tanggal)
+    {
+        $namahari = date('l', strtotime($tanggal));
+        return daftar_hari($namahari);
+    }
+}
+
 // END TIME ----------------------------------------
 
 if (! function_exists('market_bagikankewhatsapp')) {
